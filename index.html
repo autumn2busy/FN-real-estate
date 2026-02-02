@@ -1,67 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlyNerd Tech | AI-Powered Full Stack Solutions</title>
-    <meta name="description" content="FlyNerd Tech - Freethinking innovators building custom AI-powered tech stacks. From websites to data warehouses, we architect your digital future.">
-    
+    <title>FlyNerd Tech | Enterprise AI Solutions</title>
+    <meta name="description"
+        content="FlyNerd Tech builds custom AI-powered technology stacks for forward-thinking businesses. From intelligent websites to data infrastructure.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <!-- Cursor Glow Effect -->
-    <div class="cursor-glow"></div>
-    
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <div class="grid-overlay"></div>
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="particle-field" id="particles"></div>
-    </div>
 
+<body>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" id="nav">
         <div class="nav-container">
             <a href="#" class="logo">
-                <div class="logo-icon">
-                    <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M25 5L45 15V35L25 45L5 35V15L25 5Z" stroke="url(#logo-gradient)" stroke-width="2" fill="none"/>
-                        <path d="M25 15L35 20V30L25 35L15 30V20L25 15Z" fill="url(#logo-gradient)"/>
-                        <defs>
-                            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#00f5ff"/>
-                                <stop offset="50%" style="stop-color:#bf00ff"/>
-                                <stop offset="100%" style="stop-color:#ff006e"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-                <span class="logo-text">FLYNERD<span class="logo-accent">TECH</span></span>
+                <span class="logo-text">FLYNERD <span class="logo-accent">TECH</span></span>
             </a>
-            
+
             <div class="nav-links">
-                <a href="#capabilities" class="nav-link">Capabilities</a>
+                <a href="#capabilities" class="nav-link">Services</a>
                 <a href="#process" class="nav-link">Process</a>
-                <a href="#stack" class="nav-link">Tech Stack</a>
                 <a href="#work" class="nav-link">Work</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
-            
+
             <a href="#contact" class="nav-cta">
-                <span>Start Project</span>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <span>Start a Project</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" />
                 </svg>
             </a>
-            
+
             <button class="mobile-menu-btn" aria-label="Menu">
-                <span></span>
                 <span></span>
                 <span></span>
             </button>
@@ -70,86 +47,52 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-pulse"></span>
-                <span>AI-POWERED INNOVATION</span>
-            </div>
-            
-            <h1 class="hero-title">
-                <span class="title-line">We architect</span>
-                <span class="title-line gradient-text">the future</span>
-                <span class="title-line">of your digital empire</span>
-            </h1>
-            
-            <p class="hero-subtitle">
-                Freethinking innovators building custom, full-spectrum tech stacks. 
-                From AI-powered sites to intelligent data ecosystems — we don't just build technology, 
-                we engineer competitive advantages.
-            </p>
-            
-            <div class="hero-cta-group">
-                <a href="#contact" class="btn btn-primary">
-                    <span>Launch Your Vision</span>
-                    <div class="btn-glow"></div>
-                </a>
-                <a href="#capabilities" class="btn btn-secondary">
-                    <span>Explore Capabilities</span>
-                </a>
-            </div>
-            
-            <div class="hero-stats">
-                <div class="stat">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">AI-First Technology Partner</span>
+        </div>
+
+        <h1 class="hero-title">
+            We build technology<br>
+            that builds <span class="emphasis">empires</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            Full-spectrum technology stacks engineered for scale. From intelligent
+            websites to enterprise data infrastructure—we architect the systems
+            that power market leaders.
+        </p>
+
+        <div class="hero-cta-group">
+            <a href="#contact" class="btn btn-primary">
+                <span>Schedule Consultation</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+            </a>
+            <a href="#capabilities" class="btn btn-secondary">
+                <span>Explore Services</span>
+            </a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat">
+                <div>
                     <span class="stat-number" data-count="150">0</span><span class="stat-suffix">+</span>
-                    <span class="stat-label">Projects Delivered</span>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
+                <span class="stat-label">Projects Delivered</span>
+            </div>
+            <div class="stat">
+                <div>
                     <span class="stat-number" data-count="98">0</span><span class="stat-suffix">%</span>
-                    <span class="stat-label">Client Retention</span>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
+                <span class="stat-label">Client Retention</span>
+            </div>
+            <div class="stat">
+                <div>
                     <span class="stat-number" data-count="5">0</span><span class="stat-suffix">x</span>
-                    <span class="stat-label">Avg. ROI Increase</span>
                 </div>
-            </div>
-        </div>
-        
-        <div class="hero-visual">
-            <div class="tech-orb">
-                <div class="orb-ring ring-1"></div>
-                <div class="orb-ring ring-2"></div>
-                <div class="orb-ring ring-3"></div>
-                <div class="orb-core">
-                    <svg viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="40" stroke="url(#orb-gradient)" stroke-width="0.5" opacity="0.5"/>
-                        <circle cx="50" cy="50" r="30" stroke="url(#orb-gradient)" stroke-width="0.5" opacity="0.7"/>
-                        <circle cx="50" cy="50" r="20" stroke="url(#orb-gradient)" stroke-width="1" opacity="0.9"/>
-                        <circle cx="50" cy="50" r="8" fill="url(#orb-gradient)"/>
-                        <defs>
-                            <radialGradient id="orb-gradient">
-                                <stop offset="0%" style="stop-color:#00f5ff"/>
-                                <stop offset="100%" style="stop-color:#bf00ff"/>
-                            </radialGradient>
-                        </defs>
-                    </svg>
-                </div>
-                <div class="floating-icons">
-                    <div class="float-icon icon-1">🤖</div>
-                    <div class="float-icon icon-2">⚡</div>
-                    <div class="float-icon icon-3">📊</div>
-                    <div class="float-icon icon-4">🔮</div>
-                    <div class="float-icon icon-5">💎</div>
-                    <div class="float-icon icon-6">🚀</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <div class="scroll-line">
-                <div class="scroll-dot"></div>
+                <span class="stat-label">Average ROI</span>
             </div>
         </div>
     </section>
@@ -157,211 +100,124 @@
     <!-- Capabilities Section -->
     <section id="capabilities" class="capabilities">
         <div class="section-header">
-            <span class="section-tag">CAPABILITIES</span>
-            <h2 class="section-title">Full-Spectrum <span class="gradient-text">Tech Stacks</span></h2>
-            <p class="section-subtitle">We build complete digital ecosystems that scale with your ambitions</p>
+            <div class="section-tag">Services</div>
+            <h2 class="section-title">Full-spectrum technology solutions</h2>
+            <p class="section-subtitle">End-to-end systems designed to work together, scale infinitely, and evolve with
+                your business.</p>
         </div>
-        
+
         <div class="capabilities-grid">
             <div class="capability-card">
-                <div class="card-icon">
-                    <div class="icon-bg"></div>
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <path d="M8 12H40V36H8V12Z" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 18H28" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 24H36" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 30H24" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </div>
-                <h3 class="card-title">AI-Powered Websites</h3>
-                <p class="card-description">Next-gen web experiences with intelligent personalization, conversational interfaces, and predictive content delivery.</p>
+                <div class="card-number">01</div>
+                <h3 class="card-title">Intelligent Websites</h3>
+                <p class="card-description">High-performance web experiences with AI-driven personalization and seamless
+                    integrations.</p>
                 <ul class="card-features">
                     <li>Headless CMS Architecture</li>
-                    <li>AI Chat Integration</li>
-                    <li>Dynamic Personalization</li>
+                    <li>AI Personalization</li>
+                    <li>Performance Optimization</li>
                 </ul>
-                <div class="card-glow"></div>
             </div>
-            
-            <div class="capability-card featured">
-                <div class="featured-badge">Most Popular</div>
-                <div class="card-icon">
-                    <div class="icon-bg"></div>
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <path d="M24 8L40 16V32L24 40L8 32V16L24 8Z" stroke="currentColor" stroke-width="2"/>
-                        <path d="M24 24L24 40" stroke="currentColor" stroke-width="2"/>
-                        <path d="M24 24L40 16" stroke="currentColor" stroke-width="2"/>
-                        <path d="M24 24L8 16" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </div>
-                <h3 class="card-title">E-Commerce Engines</h3>
-                <p class="card-description">High-conversion storefronts with AI-driven product recommendations, inventory optimization, and seamless checkout flows.</p>
+
+            <div class="capability-card">
+                <div class="card-number">02</div>
+                <h3 class="card-title">E-Commerce Platforms</h3>
+                <p class="card-description">Conversion-optimized storefronts with intelligent product discovery and
+                    frictionless checkout.</p>
                 <ul class="card-features">
-                    <li>Shopify Plus / Custom</li>
-                    <li>AI Product Recommendations</li>
+                    <li>Shopify Plus & Custom</li>
+                    <li>AI Recommendations</li>
                     <li>Multi-Channel Sync</li>
                 </ul>
-                <div class="card-glow"></div>
             </div>
-            
+
             <div class="capability-card">
-                <div class="card-icon">
-                    <div class="icon-bg"></div>
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2"/>
-                        <path d="M24 14V24L30 30" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="24" cy="24" r="4" fill="currentColor"/>
-                    </svg>
-                </div>
+                <div class="card-number">03</div>
                 <h3 class="card-title">CRM & Automation</h3>
-                <p class="card-description">Intelligent customer relationship systems that nurture leads, automate workflows, and predict customer behavior.</p>
+                <p class="card-description">Intelligent relationship management systems that nurture leads and automate
+                    workflows.</p>
                 <ul class="card-features">
-                    <li>HubSpot / Salesforce / Custom</li>
+                    <li>HubSpot & Salesforce</li>
                     <li>AI Lead Scoring</li>
                     <li>Workflow Automation</li>
                 </ul>
-                <div class="card-glow"></div>
             </div>
-            
+
             <div class="capability-card">
-                <div class="card-icon">
-                    <div class="icon-bg"></div>
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <rect x="8" y="16" width="32" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
-                        <path d="M16 24H32" stroke="currentColor" stroke-width="2"/>
-                        <path d="M16 28H28" stroke="currentColor" stroke-width="2"/>
-                        <path d="M24 8V16" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </div>
-                <h3 class="card-title">Data Warehouses</h3>
-                <p class="card-description">Unified data lakes that consolidate all your sources into actionable intelligence with real-time analytics.</p>
+                <div class="card-number">04</div>
+                <h3 class="card-title">Data Infrastructure</h3>
+                <p class="card-description">Unified data warehouses that consolidate sources into actionable
+                    intelligence.</p>
                 <ul class="card-features">
-                    <li>Snowflake / BigQuery</li>
+                    <li>Snowflake & BigQuery</li>
                     <li>ETL Pipelines</li>
-                    <li>Real-Time Dashboards</li>
+                    <li>Real-Time Analytics</li>
                 </ul>
-                <div class="card-glow"></div>
             </div>
-            
+
             <div class="capability-card">
-                <div class="card-icon">
-                    <div class="icon-bg"></div>
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <path d="M8 36L24 8L40 36H8Z" stroke="currentColor" stroke-width="2"/>
-                        <path d="M16 28H32" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="24" cy="20" r="4" fill="currentColor"/>
-                    </svg>
-                </div>
-                <h3 class="card-title">Email Marketing AI</h3>
-                <p class="card-description">Smart email systems that write, personalize, and optimize campaigns using machine learning for maximum engagement.</p>
+                <div class="card-number">05</div>
+                <h3 class="card-title">Email Intelligence</h3>
+                <p class="card-description">AI-powered email systems that write, personalize, and optimize campaigns
+                    autonomously.</p>
                 <ul class="card-features">
                     <li>AI Content Generation</li>
                     <li>Behavioral Triggers</li>
-                    <li>A/B Optimization</li>
+                    <li>Predictive Send Times</li>
                 </ul>
-                <div class="card-glow"></div>
             </div>
-            
+
             <div class="capability-card">
-                <div class="card-icon">
-                    <div class="icon-bg"></div>
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <path d="M12 36V20" stroke="currentColor" stroke-width="3"/>
-                        <path d="M20 36V14" stroke="currentColor" stroke-width="3"/>
-                        <path d="M28 36V24" stroke="currentColor" stroke-width="3"/>
-                        <path d="M36 36V10" stroke="currentColor" stroke-width="3"/>
-                        <circle cx="12" cy="20" r="2" fill="currentColor"/>
-                        <circle cx="20" cy="14" r="2" fill="currentColor"/>
-                        <circle cx="28" cy="24" r="2" fill="currentColor"/>
-                        <circle cx="36" cy="10" r="2" fill="currentColor"/>
-                    </svg>
-                </div>
+                <div class="card-number">06</div>
                 <h3 class="card-title">Analytics & BI</h3>
-                <p class="card-description">Predictive analytics and business intelligence that turns data into decisions and insights into action.</p>
+                <p class="card-description">Predictive analytics and dashboards that transform data into competitive
+                    advantage.</p>
                 <ul class="card-features">
                     <li>Custom Dashboards</li>
-                    <li>Predictive Models</li>
-                    <li>Attribution Tracking</li>
+                    <li>Predictive Modeling</li>
+                    <li>Attribution Analysis</li>
                 </ul>
-                <div class="card-glow"></div>
             </div>
         </div>
     </section>
 
     <!-- Process Section -->
     <section id="process" class="process">
-        <div class="section-header">
-            <span class="section-tag">PROCESS</span>
-            <h2 class="section-title">How We <span class="gradient-text">Build</span></h2>
-            <p class="section-subtitle">A battle-tested methodology that delivers results, not excuses</p>
-        </div>
-        
-        <div class="process-timeline">
-            <div class="timeline-line">
-                <div class="timeline-progress"></div>
+        <div class="process-container">
+            <div class="section-header">
+                <div class="section-tag">Process</div>
+                <h2 class="section-title">How we deliver results</h2>
+                <p class="section-subtitle">A proven methodology refined across hundreds of enterprise implementations.
+                </p>
             </div>
-            
-            <div class="process-step">
-                <div class="step-number">01</div>
-                <div class="step-content">
-                    <h3 class="step-title">Discovery & Strategy</h3>
-                    <p class="step-description">We dive deep into your business, market, and competitors. We don't build what you ask for — we build what you actually need.</p>
-                    <div class="step-deliverables">
-                        <span>Tech Audit</span>
-                        <span>User Research</span>
-                        <span>Strategy Blueprint</span>
-                    </div>
+
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">PHASE 01</div>
+                    <h3 class="step-title">Discovery</h3>
+                    <p class="step-description">Deep analysis of your business, market position, and technology
+                        landscape. We identify opportunities others miss.</p>
                 </div>
-                <div class="step-visual">
-                    <div class="visual-orb discovery"></div>
+
+                <div class="process-step">
+                    <div class="step-number">PHASE 02</div>
+                    <h3 class="step-title">Architecture</h3>
+                    <p class="step-description">System design, UX strategy, and technical specifications. Every decision
+                        is informed by data and expertise.</p>
                 </div>
-            </div>
-            
-            <div class="process-step">
-                <div class="step-number">02</div>
-                <div class="step-content">
-                    <h3 class="step-title">Architecture & Design</h3>
-                    <p class="step-description">System architecture, UX flows, and visual design that balances innovation with usability. Every pixel has purpose.</p>
-                    <div class="step-deliverables">
-                        <span>System Design</span>
-                        <span>UI/UX Prototypes</span>
-                        <span>Tech Spec</span>
-                    </div>
+
+                <div class="process-step">
+                    <div class="step-number">PHASE 03</div>
+                    <h3 class="step-title">Development</h3>
+                    <p class="step-description">Agile sprints with weekly demos. You see progress, provide feedback, and
+                        course-correct in real time.</p>
                 </div>
-                <div class="step-visual">
-                    <div class="visual-orb design"></div>
-                </div>
-            </div>
-            
-            <div class="process-step">
-                <div class="step-number">03</div>
-                <div class="step-content">
-                    <h3 class="step-title">Development Sprint</h3>
-                    <p class="step-description">Agile development with weekly demos. You see progress, give feedback, and we iterate. No black boxes, no surprises.</p>
-                    <div class="step-deliverables">
-                        <span>Weekly Demos</span>
-                        <span>CI/CD Pipeline</span>
-                        <span>QA Testing</span>
-                    </div>
-                </div>
-                <div class="step-visual">
-                    <div class="visual-orb development"></div>
-                </div>
-            </div>
-            
-            <div class="process-step">
-                <div class="step-number">04</div>
-                <div class="step-content">
+
+                <div class="process-step">
+                    <div class="step-number">PHASE 04</div>
                     <h3 class="step-title">Launch & Scale</h3>
-                    <p class="step-description">Go-live with full support, monitoring, and optimization. We don't disappear after launch — we help you dominate.</p>
-                    <div class="step-deliverables">
-                        <span>Deployment</span>
-                        <span>Training</span>
-                        <span>Growth Support</span>
-                    </div>
-                </div>
-                <div class="step-visual">
-                    <div class="visual-orb launch"></div>
+                    <p class="step-description">Deployment, optimization, and ongoing support. We remain invested in
+                        your long-term success.</p>
                 </div>
             </div>
         </div>
@@ -369,93 +225,58 @@
 
     <!-- Tech Stack Section -->
     <section id="stack" class="tech-stack">
-        <div class="section-header">
-            <span class="section-tag">TECH STACK</span>
-            <h2 class="section-title">Powered by <span class="gradient-text">Innovation</span></h2>
-            <p class="section-subtitle">We use the most advanced technologies to build future-proof solutions</p>
+        <div class="section-header center">
+            <div class="section-tag">Technology</div>
+            <h2 class="section-title">Enterprise-grade stack</h2>
+            <p class="section-subtitle">We work with industry-leading technologies to build systems that scale.</p>
         </div>
-        
-        <div class="stack-marquee">
-            <div class="marquee-track">
-                <div class="stack-item">
-                    <span class="stack-icon">⚛️</span>
-                    <span>React / Next.js</span>
-                </div>
-                <div class="stack-item">
-                    <span class="stack-icon">🐍</span>
-                    <span>Python / FastAPI</span>
-                </div>
-                <div class="stack-item">
-                    <span class="stack-icon">🤖</span>
-                    <span>OpenAI / Claude</span>
-                </div>
-                <div class="stack-item">
-                    <span class="stack-icon">❄️</span>
-                    <span>Snowflake</span>
-                </div>
-                <div class="stack-item">
-                    <span class="stack-icon">🔥</span>
-                    <span>Firebase / Supabase</span>
-                </div>
-                <div class="stack-item">
-                    <span class="stack-icon">☁️</span>
-                    <span>AWS / GCP / Vercel</span>
-                </div>
-                <div class="stack-item">
-                    <span class="stack-icon">🛒</span>
-                    <span>Shopify Plus</span>
-                </div>
-                <div class="stack-item">
-                    <span class="stack-icon">📊</span>
-                    <span>Segment / Mixpanel</span>
-                </div>
-                <!-- Duplicate for seamless loop -->
-                <div class="stack-item">
-                    <span class="stack-icon">⚛️</span>
-                    <span>React / Next.js</span>
-                </div>
-                <div class="stack-item">
-                    <span class="stack-icon">🐍</span>
-                    <span>Python / FastAPI</span>
-                </div>
-                <div class="stack-item">
-                    <span class="stack-icon">🤖</span>
-                    <span>OpenAI / Claude</span>
-                </div>
-                <div class="stack-item">
-                    <span class="stack-icon">❄️</span>
-                    <span>Snowflake</span>
-                </div>
+
+        <div class="stack-grid">
+            <div class="stack-item">
+                <span class="stack-icon">⚛️</span>
+                <span class="stack-name">React / Next.js</span>
+            </div>
+            <div class="stack-item">
+                <span class="stack-icon">🐍</span>
+                <span class="stack-name">Python / FastAPI</span>
+            </div>
+            <div class="stack-item">
+                <span class="stack-icon">🤖</span>
+                <span class="stack-name">OpenAI / Claude</span>
+            </div>
+            <div class="stack-item">
+                <span class="stack-icon">❄️</span>
+                <span class="stack-name">Snowflake</span>
+            </div>
+            <div class="stack-item">
+                <span class="stack-icon">🔥</span>
+                <span class="stack-name">Supabase</span>
+            </div>
+            <div class="stack-item">
+                <span class="stack-icon">☁️</span>
+                <span class="stack-name">AWS / GCP</span>
+            </div>
+            <div class="stack-item">
+                <span class="stack-icon">🛒</span>
+                <span class="stack-name">Shopify Plus</span>
+            </div>
+            <div class="stack-item">
+                <span class="stack-icon">📊</span>
+                <span class="stack-name">Segment</span>
             </div>
         </div>
-        
+
         <div class="ai-feature">
             <div class="ai-visual">
-                <div class="neural-network">
-                    <div class="node node-1"></div>
-                    <div class="node node-2"></div>
-                    <div class="node node-3"></div>
-                    <div class="node node-4"></div>
-                    <div class="node node-5"></div>
-                    <div class="node node-6"></div>
-                    <div class="node node-7"></div>
-                    <svg class="connections" viewBox="0 0 400 300">
-                        <line class="connection" x1="50" y1="75" x2="150" y2="50"/>
-                        <line class="connection" x1="50" y1="75" x2="150" y2="150"/>
-                        <line class="connection" x1="50" y1="225" x2="150" y2="150"/>
-                        <line class="connection" x1="50" y1="225" x2="150" y2="250"/>
-                        <line class="connection" x1="150" y1="50" x2="250" y2="100"/>
-                        <line class="connection" x1="150" y1="150" x2="250" y2="100"/>
-                        <line class="connection" x1="150" y1="150" x2="250" y2="200"/>
-                        <line class="connection" x1="150" y1="250" x2="250" y2="200"/>
-                        <line class="connection" x1="250" y1="100" x2="350" y2="150"/>
-                        <line class="connection" x1="250" y1="200" x2="350" y2="150"/>
-                    </svg>
+                <div class="ai-circle">
+                    <div class="ai-circle-inner"></div>
                 </div>
             </div>
             <div class="ai-content">
-                <h3 class="ai-title">AI-First Development</h3>
-                <p class="ai-description">Every solution we build is infused with artificial intelligence. From smart automations to predictive analytics, we don't just add AI as an afterthought — it's woven into the DNA of everything we create.</p>
+                <h3>AI-Native Development</h3>
+                <p class="ai-description">Every solution we build is enhanced with artificial intelligence. From smart
+                    automations to predictive analytics, AI isn't an afterthought—it's woven into the foundation of
+                    everything we create.</p>
                 <div class="ai-capabilities">
                     <div class="ai-cap">
                         <span class="ai-cap-icon">🧠</span>
@@ -481,22 +302,23 @@
     <!-- Work Section -->
     <section id="work" class="work">
         <div class="section-header">
-            <span class="section-tag">WORK</span>
-            <h2 class="section-title">Built to <span class="gradient-text">Dominate</span></h2>
-            <p class="section-subtitle">Real results from real projects</p>
+            <div class="section-tag">Selected Work</div>
+            <h2 class="section-title">Results that speak</h2>
+            <p class="section-subtitle">A selection of projects where technology drove measurable business outcomes.</p>
         </div>
-        
+
         <div class="work-grid">
             <div class="work-card large">
                 <div class="work-image">
-                    <div class="work-placeholder gradient-1">
-                        <span class="placeholder-icon">🛒</span>
+                    <div class="work-placeholder">
+                        <span class="placeholder-icon">◆</span>
                     </div>
                 </div>
                 <div class="work-content">
-                    <span class="work-category">E-Commerce + AI</span>
-                    <h3 class="work-title">Fashion Brand Transformation</h3>
-                    <p class="work-description">Complete digital overhaul with AI-powered product recommendations and personalized shopping experiences.</p>
+                    <span class="work-category">E-Commerce Transformation</span>
+                    <h3 class="work-title">Luxury Fashion Brand</h3>
+                    <p class="work-description">Complete digital overhaul including AI-powered product discovery,
+                        personalized experiences, and unified data infrastructure.</p>
                     <div class="work-stats">
                         <div class="work-stat">
                             <span class="stat-value">340%</span>
@@ -509,17 +331,18 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="work-card">
                 <div class="work-image">
-                    <div class="work-placeholder gradient-2">
-                        <span class="placeholder-icon">📊</span>
+                    <div class="work-placeholder">
+                        <span class="placeholder-icon">◇</span>
                     </div>
                 </div>
                 <div class="work-content">
-                    <span class="work-category">Data + Analytics</span>
-                    <h3 class="work-title">Enterprise Data Platform</h3>
-                    <p class="work-description">Unified data warehouse consolidating 15+ sources with real-time dashboards.</p>
+                    <span class="work-category">Data Infrastructure</span>
+                    <h3 class="work-title">Enterprise Analytics Platform</h3>
+                    <p class="work-description">Unified data warehouse consolidating 15+ sources with real-time
+                        dashboards.</p>
                     <div class="work-stats">
                         <div class="work-stat">
                             <span class="stat-value">500K+</span>
@@ -528,21 +351,22 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="work-card">
                 <div class="work-image">
-                    <div class="work-placeholder gradient-3">
-                        <span class="placeholder-icon">🤖</span>
+                    <div class="work-placeholder">
+                        <span class="placeholder-icon">○</span>
                     </div>
                 </div>
                 <div class="work-content">
-                    <span class="work-category">AI Automation</span>
-                    <h3 class="work-title">Customer Service AI</h3>
-                    <p class="work-description">24/7 AI concierge handling 80% of support inquiries autonomously.</p>
+                    <span class="work-category">AI Integration</span>
+                    <h3 class="work-title">Intelligent Customer Service</h3>
+                    <p class="work-description">24/7 AI concierge handling customer inquiries with human-level accuracy.
+                    </p>
                     <div class="work-stats">
                         <div class="work-stat">
                             <span class="stat-value">80%</span>
-                            <span class="stat-name">Automation Rate</span>
+                            <span class="stat-name">Automation</span>
                         </div>
                     </div>
                 </div>
@@ -552,55 +376,45 @@
 
     <!-- CTA Section -->
     <section id="contact" class="cta-section">
-        <div class="cta-bg">
-            <div class="cta-orb cta-orb-1"></div>
-            <div class="cta-orb cta-orb-2"></div>
-        </div>
-        
-        <div class="cta-content">
-            <h2 class="cta-title">Ready to <span class="gradient-text">dominate</span> your market?</h2>
-            <p class="cta-subtitle">Let's build something legendary together. Book a strategy call and let's talk about turning your vision into reality.</p>
-            
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to build something <span class="emphasis">exceptional</span>?</h2>
+            <p class="cta-subtitle">Let's discuss how we can architect technology that accelerates your business.</p>
+
             <div class="cta-form-container">
                 <form class="cta-form" id="contact-form">
                     <div class="form-row">
                         <div class="form-group">
                             <input type="text" id="name" placeholder="Your Name" required>
-                            <div class="input-focus"></div>
                         </div>
                         <div class="form-group">
                             <input type="email" id="email" placeholder="Email Address" required>
-                            <div class="input-focus"></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <select id="project-type" required>
                             <option value="" disabled selected>What do you need?</option>
-                            <option value="website">AI-Powered Website</option>
+                            <option value="website">Intelligent Website</option>
                             <option value="ecommerce">E-Commerce Platform</option>
                             <option value="crm">CRM & Automation</option>
-                            <option value="data">Data Warehouse</option>
-                            <option value="full-stack">Full Tech Stack</option>
+                            <option value="data">Data Infrastructure</option>
+                            <option value="full-stack">Full Technology Stack</option>
                             <option value="other">Something Else</option>
                         </select>
-                        <div class="input-focus"></div>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" placeholder="Tell us about your vision..." rows="4"></textarea>
-                        <div class="input-focus"></div>
+                        <textarea id="message" placeholder="Tell us about your project..." rows="4"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">
-                        <span>Start the Conversation</span>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <span>Submit Inquiry</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" />
                         </svg>
-                        <div class="btn-glow"></div>
                     </button>
                 </form>
             </div>
-            
+
             <div class="cta-trust">
-                <span>Trusted by forward-thinking brands:</span>
+                <span>Trusted by industry leaders</span>
                 <div class="trust-logos">
                     <div class="trust-logo">TechCorp</div>
                     <div class="trust-logo">Innovate.io</div>
@@ -617,31 +431,18 @@
             <div class="footer-main">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <div class="logo-icon">
-                            <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M25 5L45 15V35L25 45L5 35V15L25 5Z" stroke="url(#footer-gradient)" stroke-width="2" fill="none"/>
-                                <path d="M25 15L35 20V30L25 35L15 30V20L25 15Z" fill="url(#footer-gradient)"/>
-                                <defs>
-                                    <linearGradient id="footer-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#00f5ff"/>
-                                        <stop offset="50%" style="stop-color:#bf00ff"/>
-                                        <stop offset="100%" style="stop-color:#ff006e"/>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-                        <span class="logo-text">FLYNERD<span class="logo-accent">TECH</span></span>
+                        <span class="logo-text">FLYNERD <span class="logo-accent">TECH</span></span>
                     </a>
                     <p class="footer-tagline">Freethinking Lifestyle Yearners<br>Navigating Every Relevant Domain</p>
                 </div>
-                
+
                 <div class="footer-links">
                     <div class="footer-col">
-                        <h4>Capabilities</h4>
-                        <a href="#capabilities">AI Websites</a>
+                        <h4>Services</h4>
+                        <a href="#capabilities">Intelligent Websites</a>
                         <a href="#capabilities">E-Commerce</a>
                         <a href="#capabilities">CRM Systems</a>
-                        <a href="#capabilities">Data Warehouses</a>
+                        <a href="#capabilities">Data Infrastructure</a>
                     </div>
                     <div class="footer-col">
                         <h4>Company</h4>
@@ -652,16 +453,16 @@
                     </div>
                     <div class="footer-col">
                         <h4>Connect</h4>
-                        <a href="#">Twitter / X</a>
                         <a href="#">LinkedIn</a>
+                        <a href="#">Twitter</a>
                         <a href="#">Instagram</a>
                         <a href="#">GitHub</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
-                <p>&copy; 2025 FlyNerd Tech. All rights reserved.</p>
+                <p>© 2025 FlyNerd Tech. All rights reserved.</p>
                 <div class="footer-legal">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
@@ -672,4 +473,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
