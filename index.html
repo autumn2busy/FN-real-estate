@@ -4,41 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlyNerd Tech | Enterprise AI Solutions</title>
+    <title>FlyNerd Tech | AI-Powered Technology Solutions</title>
     <meta name="description"
         content="FlyNerd Tech builds custom AI-powered technology stacks for forward-thinking businesses. From intelligent websites to data infrastructure.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <!-- Animated Background -->
+    <div class="bg-container">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="gradient-orb orb-4"></div>
+        <div class="grid-lines"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- Floating Particles -->
+    <canvas id="particles-canvas"></canvas>
+
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-container">
             <a href="#" class="logo">
-                <span class="logo-text">FLYNERD <span class="logo-accent">TECH</span></span>
+                <div class="logo-mark">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="url(#logo-grad)" stroke-width="2" />
+                        <path d="M20 12L28 16V24L20 28L12 24V16L20 12Z" fill="url(#logo-grad)" />
+                        <defs>
+                            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#6366f1" />
+                                <stop offset="100%" stop-color="#a855f7" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">FLYNERD<span class="logo-accent">TECH</span></span>
             </a>
 
             <div class="nav-links">
-                <a href="#capabilities" class="nav-link">Services</a>
-                <a href="#process" class="nav-link">Process</a>
-                <a href="#work" class="nav-link">Work</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#process" class="nav-link">How We Work</a>
+                <a href="#work" class="nav-link">Case Studies</a>
+                <a href="#tech" class="nav-link">Technology</a>
             </div>
 
             <a href="#contact" class="nav-cta">
-                <span>Start a Project</span>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" />
+                <span>Let's Talk</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M2 14L14 2M14 2H4M14 2V12" stroke="currentColor" stroke-width="2" />
                 </svg>
             </a>
 
             <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
                 <span></span>
                 <span></span>
             </button>
@@ -47,252 +74,465 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-badge">
-            <span class="badge-dot"></span>
-            <span class="badge-text">AI-First Technology Partner</span>
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <div class="eyebrow-line"></div>
+                <span>AI-FIRST TECHNOLOGY PARTNER</span>
+                <div class="eyebrow-line"></div>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="title-line">We Build</span>
+                <span class="title-line">
+                    <span class="gradient-text">AI-Powered</span>
+                </span>
+                <span class="title-line">Technology Stacks</span>
+            </h1>
+
+            <p class="hero-description">
+                Full-spectrum technology solutions engineered for scale. From intelligent
+                websites to enterprise data infrastructure—we architect the systems
+                that power market leaders.
+            </p>
+
+            <div class="hero-cta-row">
+                <a href="#contact" class="btn btn-primary btn-large">
+                    <span>Schedule a Call</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 16L16 4M16 4H6M16 4V14" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                </a>
+                <a href="#services" class="btn btn-ghost btn-large">
+                    <span>Explore Services</span>
+                </a>
+            </div>
+
+            <div class="hero-metrics">
+                <div class="metric">
+                    <span class="metric-value" data-count="150">0</span>
+                    <span class="metric-suffix">+</span>
+                    <span class="metric-label">Projects Delivered</span>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric">
+                    <span class="metric-value" data-count="98">0</span>
+                    <span class="metric-suffix">%</span>
+                    <span class="metric-label">Client Retention</span>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric">
+                    <span class="metric-value" data-count="5">0</span>
+                    <span class="metric-suffix">x</span>
+                    <span class="metric-label">Average ROI</span>
+                </div>
+            </div>
         </div>
 
-        <h1 class="hero-title">
-            We build technology<br>
-            that builds <span class="emphasis">empires</span>
-        </h1>
-
-        <p class="hero-subtitle">
-            Full-spectrum technology stacks engineered for scale. From intelligent
-            websites to enterprise data infrastructure—we architect the systems
-            that power market leaders.
-        </p>
-
-        <div class="hero-cta-group">
-            <a href="#contact" class="btn btn-primary">
-                <span>Schedule Consultation</span>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" />
-                </svg>
-            </a>
-            <a href="#capabilities" class="btn btn-secondary">
-                <span>Explore Services</span>
-            </a>
+        <div class="hero-visual">
+            <div class="floating-shapes">
+                <div class="shape shape-1">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <polygon points="50,5 95,75 5,75" stroke="url(#shape-grad)" stroke-width="1" fill="none" />
+                    </svg>
+                </div>
+                <div class="shape shape-2">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="45" stroke="url(#shape-grad)" stroke-width="1" fill="none" />
+                    </svg>
+                </div>
+                <div class="shape shape-3">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <rect x="10" y="10" width="80" height="80" stroke="url(#shape-grad)" stroke-width="1"
+                            fill="none" transform="rotate(45 50 50)" />
+                    </svg>
+                </div>
+                <div class="shape shape-4">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <polygon points="50,5 95,50 50,95 5,50" stroke="url(#shape-grad)" stroke-width="1"
+                            fill="none" />
+                    </svg>
+                </div>
+            </div>
+            <div class="central-orb">
+                <div class="orb-ring ring-1"></div>
+                <div class="orb-ring ring-2"></div>
+                <div class="orb-ring ring-3"></div>
+                <div class="orb-core"></div>
+            </div>
         </div>
 
-        <div class="hero-stats">
-            <div class="stat">
-                <div>
-                    <span class="stat-number" data-count="150">0</span><span class="stat-suffix">+</span>
-                </div>
-                <span class="stat-label">Projects Delivered</span>
+        <svg class="hero-defs" width="0" height="0">
+            <defs>
+                <linearGradient id="shape-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6366f1" stop-opacity="0.6" />
+                    <stop offset="100%" stop-color="#a855f7" stop-opacity="0.3" />
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
             </div>
-            <div class="stat">
-                <div>
-                    <span class="stat-number" data-count="98">0</span><span class="stat-suffix">%</span>
-                </div>
-                <span class="stat-label">Client Retention</span>
-            </div>
-            <div class="stat">
-                <div>
-                    <span class="stat-number" data-count="5">0</span><span class="stat-suffix">x</span>
-                </div>
-                <span class="stat-label">Average ROI</span>
-            </div>
+            <span>Scroll to explore</span>
         </div>
     </section>
 
-    <!-- Capabilities Section -->
-    <section id="capabilities" class="capabilities">
-        <div class="section-header">
-            <div class="section-tag">Services</div>
-            <h2 class="section-title">Full-spectrum technology solutions</h2>
-            <p class="section-subtitle">End-to-end systems designed to work together, scale infinitely, and evolve with
-                your business.</p>
-        </div>
-
-        <div class="capabilities-grid">
-            <div class="capability-card">
-                <div class="card-number">01</div>
-                <h3 class="card-title">Intelligent Websites</h3>
-                <p class="card-description">High-performance web experiences with AI-driven personalization and seamless
-                    integrations.</p>
-                <ul class="card-features">
-                    <li>Headless CMS Architecture</li>
-                    <li>AI Personalization</li>
-                    <li>Performance Optimization</li>
-                </ul>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">OUR SERVICES</span>
+                <h2 class="section-title">
+                    Full-Spectrum Technology <span class="gradient-text">Solutions</span>
+                </h2>
+                <p class="section-description">
+                    End-to-end systems designed to work together, scale infinitely,
+                    and evolve with your business needs.
+                </p>
             </div>
 
-            <div class="capability-card">
-                <div class="card-number">02</div>
-                <h3 class="card-title">E-Commerce Platforms</h3>
-                <p class="card-description">Conversion-optimized storefronts with intelligent product discovery and
-                    frictionless checkout.</p>
-                <ul class="card-features">
-                    <li>Shopify Plus & Custom</li>
-                    <li>AI Recommendations</li>
-                    <li>Multi-Channel Sync</li>
-                </ul>
-            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="6" y="10" width="36" height="28" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path d="M12 18H28" stroke="currentColor" stroke-width="2" />
+                            <path d="M12 24H36" stroke="currentColor" stroke-width="2" />
+                            <path d="M12 30H22" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <span class="card-number">01</span>
+                    <h3 class="card-title">Intelligent Websites</h3>
+                    <p class="card-text">High-performance web experiences with AI-driven personalization, conversational
+                        interfaces, and smart content delivery.</p>
+                    <ul class="card-list">
+                        <li>Headless CMS Architecture</li>
+                        <li>AI Personalization Engine</li>
+                        <li>Performance Optimization</li>
+                    </ul>
+                </div>
 
-            <div class="capability-card">
-                <div class="card-number">03</div>
-                <h3 class="card-title">CRM & Automation</h3>
-                <p class="card-description">Intelligent relationship management systems that nurture leads and automate
-                    workflows.</p>
-                <ul class="card-features">
-                    <li>HubSpot & Salesforce</li>
-                    <li>AI Lead Scoring</li>
-                    <li>Workflow Automation</li>
-                </ul>
-            </div>
+                <div class="service-card featured">
+                    <div class="card-glow"></div>
+                    <div class="featured-tag">Most Popular</div>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M24 6L42 16V32L24 42L6 32V16L24 6Z" stroke="currentColor" stroke-width="2" />
+                            <path d="M24 24V42" stroke="currentColor" stroke-width="2" />
+                            <path d="M24 24L42 16" stroke="currentColor" stroke-width="2" />
+                            <path d="M24 24L6 16" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <span class="card-number">02</span>
+                    <h3 class="card-title">E-Commerce Platforms</h3>
+                    <p class="card-text">Conversion-optimized storefronts with intelligent product discovery, inventory
+                        optimization, and seamless checkout.</p>
+                    <ul class="card-list">
+                        <li>Shopify Plus & Custom Builds</li>
+                        <li>AI Product Recommendations</li>
+                        <li>Multi-Channel Sync</li>
+                    </ul>
+                </div>
 
-            <div class="capability-card">
-                <div class="card-number">04</div>
-                <h3 class="card-title">Data Infrastructure</h3>
-                <p class="card-description">Unified data warehouses that consolidate sources into actionable
-                    intelligence.</p>
-                <ul class="card-features">
-                    <li>Snowflake & BigQuery</li>
-                    <li>ETL Pipelines</li>
-                    <li>Real-Time Analytics</li>
-                </ul>
-            </div>
+                <div class="service-card">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2" />
+                            <path d="M24 12V24L32 32" stroke="currentColor" stroke-width="2" />
+                            <circle cx="24" cy="24" r="3" fill="currentColor" />
+                        </svg>
+                    </div>
+                    <span class="card-number">03</span>
+                    <h3 class="card-title">CRM & Automation</h3>
+                    <p class="card-text">Intelligent relationship management that nurtures leads, automates workflows,
+                        and predicts customer behavior.</p>
+                    <ul class="card-list">
+                        <li>HubSpot & Salesforce</li>
+                        <li>AI Lead Scoring</li>
+                        <li>Workflow Automation</li>
+                    </ul>
+                </div>
 
-            <div class="capability-card">
-                <div class="card-number">05</div>
-                <h3 class="card-title">Email Intelligence</h3>
-                <p class="card-description">AI-powered email systems that write, personalize, and optimize campaigns
-                    autonomously.</p>
-                <ul class="card-features">
-                    <li>AI Content Generation</li>
-                    <li>Behavioral Triggers</li>
-                    <li>Predictive Send Times</li>
-                </ul>
-            </div>
+                <div class="service-card">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="6" y="14" width="36" height="24" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path d="M14 22H34" stroke="currentColor" stroke-width="2" />
+                            <path d="M14 30H28" stroke="currentColor" stroke-width="2" />
+                            <path d="M24 6V14" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <span class="card-number">04</span>
+                    <h3 class="card-title">Data Infrastructure</h3>
+                    <p class="card-text">Unified data warehouses that consolidate all your sources into actionable
+                        intelligence with real-time analytics.</p>
+                    <ul class="card-list">
+                        <li>Snowflake & BigQuery</li>
+                        <li>ETL Pipelines</li>
+                        <li>Real-Time Dashboards</li>
+                    </ul>
+                </div>
 
-            <div class="capability-card">
-                <div class="card-number">06</div>
-                <h3 class="card-title">Analytics & BI</h3>
-                <p class="card-description">Predictive analytics and dashboards that transform data into competitive
-                    advantage.</p>
-                <ul class="card-features">
-                    <li>Custom Dashboards</li>
-                    <li>Predictive Modeling</li>
-                    <li>Attribution Analysis</li>
-                </ul>
+                <div class="service-card">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M8 38L24 6L40 38H8Z" stroke="currentColor" stroke-width="2" />
+                            <path d="M16 30H32" stroke="currentColor" stroke-width="2" />
+                            <circle cx="24" cy="18" r="3" fill="currentColor" />
+                        </svg>
+                    </div>
+                    <span class="card-number">05</span>
+                    <h3 class="card-title">Email Intelligence</h3>
+                    <p class="card-text">AI-powered email systems that write, personalize, and optimize campaigns using
+                        machine learning.</p>
+                    <ul class="card-list">
+                        <li>AI Content Generation</li>
+                        <li>Behavioral Triggers</li>
+                        <li>Predictive Send Times</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M10 38V18" stroke="currentColor" stroke-width="3" />
+                            <path d="M18 38V12" stroke="currentColor" stroke-width="3" />
+                            <path d="M26 38V24" stroke="currentColor" stroke-width="3" />
+                            <path d="M34 38V8" stroke="currentColor" stroke-width="3" />
+                            <circle cx="10" cy="18" r="3" fill="currentColor" />
+                            <circle cx="18" cy="12" r="3" fill="currentColor" />
+                            <circle cx="26" cy="24" r="3" fill="currentColor" />
+                            <circle cx="34" cy="8" r="3" fill="currentColor" />
+                        </svg>
+                    </div>
+                    <span class="card-number">06</span>
+                    <h3 class="card-title">Analytics & BI</h3>
+                    <p class="card-text">Predictive analytics and business intelligence that transforms data into
+                        competitive advantage.</p>
+                    <ul class="card-list">
+                        <li>Custom Dashboards</li>
+                        <li>Predictive Modeling</li>
+                        <li>Attribution Analysis</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Process Section -->
     <section id="process" class="process">
-        <div class="process-container">
+        <div class="section-container">
             <div class="section-header">
-                <div class="section-tag">Process</div>
-                <h2 class="section-title">How we deliver results</h2>
-                <p class="section-subtitle">A proven methodology refined across hundreds of enterprise implementations.
+                <span class="section-label">OUR PROCESS</span>
+                <h2 class="section-title">
+                    How We <span class="gradient-text">Deliver</span> Results
+                </h2>
+                <p class="section-description">
+                    A battle-tested methodology refined across hundreds of enterprise implementations.
                 </p>
             </div>
 
-            <div class="process-grid">
-                <div class="process-step">
-                    <div class="step-number">PHASE 01</div>
-                    <h3 class="step-title">Discovery</h3>
-                    <p class="step-description">Deep analysis of your business, market position, and technology
-                        landscape. We identify opportunities others miss.</p>
+            <div class="process-timeline">
+                <div class="timeline-track">
+                    <div class="timeline-progress" id="timeline-progress"></div>
                 </div>
 
-                <div class="process-step">
-                    <div class="step-number">PHASE 02</div>
-                    <h3 class="step-title">Architecture</h3>
-                    <p class="step-description">System design, UX strategy, and technical specifications. Every decision
-                        is informed by data and expertise.</p>
-                </div>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-marker">
+                            <span>01</span>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">Discovery & Strategy</h3>
+                            <p class="step-text">Deep analysis of your business, market position, and technology
+                                landscape. We identify opportunities others miss and define a clear path forward.</p>
+                            <div class="step-tags">
+                                <span>Tech Audit</span>
+                                <span>User Research</span>
+                                <span>Strategy Blueprint</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="process-step">
-                    <div class="step-number">PHASE 03</div>
-                    <h3 class="step-title">Development</h3>
-                    <p class="step-description">Agile sprints with weekly demos. You see progress, provide feedback, and
-                        course-correct in real time.</p>
-                </div>
+                    <div class="process-step">
+                        <div class="step-marker">
+                            <span>02</span>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">Architecture & Design</h3>
+                            <p class="step-text">System architecture, UX flows, and visual design that balances
+                                innovation with usability. Every decision is informed by data and expertise.</p>
+                            <div class="step-tags">
+                                <span>System Design</span>
+                                <span>UI/UX Prototypes</span>
+                                <span>Tech Specifications</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="process-step">
-                    <div class="step-number">PHASE 04</div>
-                    <h3 class="step-title">Launch & Scale</h3>
-                    <p class="step-description">Deployment, optimization, and ongoing support. We remain invested in
-                        your long-term success.</p>
+                    <div class="process-step">
+                        <div class="step-marker">
+                            <span>03</span>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">Development Sprint</h3>
+                            <p class="step-text">Agile development with weekly demos. You see progress, provide
+                                feedback, and we iterate. No black boxes, no surprises—just transparent collaboration.
+                            </p>
+                            <div class="step-tags">
+                                <span>Weekly Demos</span>
+                                <span>CI/CD Pipeline</span>
+                                <span>QA Testing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-marker">
+                            <span>04</span>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="step-title">Launch & Scale</h3>
+                            <p class="step-text">Go-live with full support, monitoring, and optimization. We don't
+                                disappear after launch—we remain invested in your long-term success.</p>
+                            <div class="step-tags">
+                                <span>Deployment</span>
+                                <span>Training</span>
+                                <span>Growth Support</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Tech Stack Section -->
-    <section id="stack" class="tech-stack">
-        <div class="section-header center">
-            <div class="section-tag">Technology</div>
-            <h2 class="section-title">Enterprise-grade stack</h2>
-            <p class="section-subtitle">We work with industry-leading technologies to build systems that scale.</p>
-        </div>
+    <section id="tech" class="tech-stack">
+        <div class="section-container">
+            <div class="section-header centered">
+                <span class="section-label">TECHNOLOGY</span>
+                <h2 class="section-title">
+                    Enterprise-Grade <span class="gradient-text">Stack</span>
+                </h2>
+                <p class="section-description">
+                    We leverage industry-leading technologies to build systems that scale with your ambitions.
+                </p>
+            </div>
 
-        <div class="stack-grid">
-            <div class="stack-item">
-                <span class="stack-icon">⚛️</span>
-                <span class="stack-name">React / Next.js</span>
-            </div>
-            <div class="stack-item">
-                <span class="stack-icon">🐍</span>
-                <span class="stack-name">Python / FastAPI</span>
-            </div>
-            <div class="stack-item">
-                <span class="stack-icon">🤖</span>
-                <span class="stack-name">OpenAI / Claude</span>
-            </div>
-            <div class="stack-item">
-                <span class="stack-icon">❄️</span>
-                <span class="stack-name">Snowflake</span>
-            </div>
-            <div class="stack-item">
-                <span class="stack-icon">🔥</span>
-                <span class="stack-name">Supabase</span>
-            </div>
-            <div class="stack-item">
-                <span class="stack-icon">☁️</span>
-                <span class="stack-name">AWS / GCP</span>
-            </div>
-            <div class="stack-item">
-                <span class="stack-icon">🛒</span>
-                <span class="stack-name">Shopify Plus</span>
-            </div>
-            <div class="stack-item">
-                <span class="stack-icon">📊</span>
-                <span class="stack-name">Segment</span>
-            </div>
-        </div>
-
-        <div class="ai-feature">
-            <div class="ai-visual">
-                <div class="ai-circle">
-                    <div class="ai-circle-inner"></div>
+            <div class="tech-marquee">
+                <div class="marquee-content">
+                    <div class="tech-item">
+                        <span class="tech-icon">⚛️</span>
+                        <span class="tech-name">React / Next.js</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🐍</span>
+                        <span class="tech-name">Python / FastAPI</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🤖</span>
+                        <span class="tech-name">OpenAI / Claude</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">❄️</span>
+                        <span class="tech-name">Snowflake</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🔥</span>
+                        <span class="tech-name">Supabase</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">☁️</span>
+                        <span class="tech-name">AWS / GCP</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🛒</span>
+                        <span class="tech-name">Shopify Plus</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">📊</span>
+                        <span class="tech-name">Segment</span>
+                    </div>
+                    <!-- Duplicates for seamless loop -->
+                    <div class="tech-item">
+                        <span class="tech-icon">⚛️</span>
+                        <span class="tech-name">React / Next.js</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🐍</span>
+                        <span class="tech-name">Python / FastAPI</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🤖</span>
+                        <span class="tech-name">OpenAI / Claude</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">❄️</span>
+                        <span class="tech-name">Snowflake</span>
+                    </div>
                 </div>
             </div>
-            <div class="ai-content">
-                <h3>AI-Native Development</h3>
-                <p class="ai-description">Every solution we build is enhanced with artificial intelligence. From smart
-                    automations to predictive analytics, AI isn't an afterthought—it's woven into the foundation of
-                    everything we create.</p>
-                <div class="ai-capabilities">
-                    <div class="ai-cap">
-                        <span class="ai-cap-icon">🧠</span>
-                        <span>Machine Learning</span>
+
+            <div class="ai-showcase">
+                <div class="ai-visual">
+                    <div class="ai-grid">
+                        <div class="ai-node node-1"></div>
+                        <div class="ai-node node-2"></div>
+                        <div class="ai-node node-3"></div>
+                        <div class="ai-node node-4"></div>
+                        <div class="ai-node node-5"></div>
+                        <div class="ai-node node-6"></div>
+                        <div class="ai-node node-7"></div>
+                        <svg class="ai-connections" viewBox="0 0 400 300">
+                            <line x1="60" y1="80" x2="160" y2="60" stroke="url(#conn-grad)" stroke-width="1" />
+                            <line x1="60" y1="80" x2="160" y2="150" stroke="url(#conn-grad)" stroke-width="1" />
+                            <line x1="60" y1="220" x2="160" y2="150" stroke="url(#conn-grad)" stroke-width="1" />
+                            <line x1="60" y1="220" x2="160" y2="240" stroke="url(#conn-grad)" stroke-width="1" />
+                            <line x1="160" y1="60" x2="260" y2="100" stroke="url(#conn-grad)" stroke-width="1" />
+                            <line x1="160" y1="150" x2="260" y2="100" stroke="url(#conn-grad)" stroke-width="1" />
+                            <line x1="160" y1="150" x2="260" y2="200" stroke="url(#conn-grad)" stroke-width="1" />
+                            <line x1="160" y1="240" x2="260" y2="200" stroke="url(#conn-grad)" stroke-width="1" />
+                            <line x1="260" y1="100" x2="340" y2="150" stroke="url(#conn-grad)" stroke-width="1" />
+                            <line x1="260" y1="200" x2="340" y2="150" stroke="url(#conn-grad)" stroke-width="1" />
+                            <defs>
+                                <linearGradient id="conn-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3" />
+                                    <stop offset="50%" stop-color="#a855f7" stop-opacity="0.6" />
+                                    <stop offset="100%" stop-color="#6366f1" stop-opacity="0.3" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
                     </div>
-                    <div class="ai-cap">
-                        <span class="ai-cap-icon">💬</span>
-                        <span>Natural Language</span>
-                    </div>
-                    <div class="ai-cap">
-                        <span class="ai-cap-icon">👁️</span>
-                        <span>Computer Vision</span>
-                    </div>
-                    <div class="ai-cap">
-                        <span class="ai-cap-icon">📈</span>
-                        <span>Predictive Analytics</span>
+                </div>
+                <div class="ai-content">
+                    <h3 class="ai-title">AI-Native Development</h3>
+                    <p class="ai-text">Every solution we build is enhanced with artificial intelligence. From smart
+                        automations to predictive analytics, AI isn't an afterthought—it's woven into the foundation of
+                        everything we create.</p>
+                    <div class="ai-features">
+                        <div class="ai-feature">
+                            <span class="feature-icon">🧠</span>
+                            <span class="feature-name">Machine Learning</span>
+                        </div>
+                        <div class="ai-feature">
+                            <span class="feature-icon">💬</span>
+                            <span class="feature-name">Natural Language</span>
+                        </div>
+                        <div class="ai-feature">
+                            <span class="feature-icon">👁️</span>
+                            <span class="feature-name">Computer Vision</span>
+                        </div>
+                        <div class="ai-feature">
+                            <span class="feature-icon">📈</span>
+                            <span class="feature-name">Predictive Analytics</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -301,72 +541,79 @@
 
     <!-- Work Section -->
     <section id="work" class="work">
-        <div class="section-header">
-            <div class="section-tag">Selected Work</div>
-            <h2 class="section-title">Results that speak</h2>
-            <p class="section-subtitle">A selection of projects where technology drove measurable business outcomes.</p>
-        </div>
-
-        <div class="work-grid">
-            <div class="work-card large">
-                <div class="work-image">
-                    <div class="work-placeholder">
-                        <span class="placeholder-icon">◆</span>
-                    </div>
-                </div>
-                <div class="work-content">
-                    <span class="work-category">E-Commerce Transformation</span>
-                    <h3 class="work-title">Luxury Fashion Brand</h3>
-                    <p class="work-description">Complete digital overhaul including AI-powered product discovery,
-                        personalized experiences, and unified data infrastructure.</p>
-                    <div class="work-stats">
-                        <div class="work-stat">
-                            <span class="stat-value">340%</span>
-                            <span class="stat-name">Revenue Growth</span>
-                        </div>
-                        <div class="work-stat">
-                            <span class="stat-value">2.8x</span>
-                            <span class="stat-name">Conversion Rate</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">CASE STUDIES</span>
+                <h2 class="section-title">
+                    Results That <span class="gradient-text">Speak</span>
+                </h2>
+                <p class="section-description">
+                    A selection of projects where technology drove measurable business outcomes.
+                </p>
             </div>
 
-            <div class="work-card">
-                <div class="work-image">
-                    <div class="work-placeholder">
-                        <span class="placeholder-icon">◇</span>
+            <div class="work-showcase">
+                <div class="work-card work-large">
+                    <div class="work-visual">
+                        <div class="work-gradient"></div>
+                        <div class="work-icon">◆</div>
                     </div>
-                </div>
-                <div class="work-content">
-                    <span class="work-category">Data Infrastructure</span>
-                    <h3 class="work-title">Enterprise Analytics Platform</h3>
-                    <p class="work-description">Unified data warehouse consolidating 15+ sources with real-time
-                        dashboards.</p>
-                    <div class="work-stats">
-                        <div class="work-stat">
-                            <span class="stat-value">500K+</span>
-                            <span class="stat-name">Daily Events</span>
+                    <div class="work-info">
+                        <span class="work-category">E-Commerce + AI</span>
+                        <h3 class="work-title">Luxury Fashion Brand Transformation</h3>
+                        <p class="work-text">Complete digital overhaul including AI-powered product discovery,
+                            personalized shopping experiences, and unified data infrastructure across 12 markets.</p>
+                        <div class="work-results">
+                            <div class="result">
+                                <span class="result-value">340%</span>
+                                <span class="result-label">Revenue Growth</span>
+                            </div>
+                            <div class="result">
+                                <span class="result-value">2.8x</span>
+                                <span class="result-label">Conversion Rate</span>
+                            </div>
+                            <div class="result">
+                                <span class="result-value">45%</span>
+                                <span class="result-label">Cart Size Increase</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="work-card">
-                <div class="work-image">
-                    <div class="work-placeholder">
-                        <span class="placeholder-icon">○</span>
+                <div class="work-card">
+                    <div class="work-visual">
+                        <div class="work-gradient gradient-alt"></div>
+                        <div class="work-icon">◇</div>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">Data Infrastructure</span>
+                        <h3 class="work-title">Enterprise Analytics Platform</h3>
+                        <p class="work-text">Unified data warehouse consolidating 15+ sources with real-time dashboards
+                            and predictive insights.</p>
+                        <div class="work-results">
+                            <div class="result">
+                                <span class="result-value">500K+</span>
+                                <span class="result-label">Daily Events</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="work-content">
-                    <span class="work-category">AI Integration</span>
-                    <h3 class="work-title">Intelligent Customer Service</h3>
-                    <p class="work-description">24/7 AI concierge handling customer inquiries with human-level accuracy.
-                    </p>
-                    <div class="work-stats">
-                        <div class="work-stat">
-                            <span class="stat-value">80%</span>
-                            <span class="stat-name">Automation</span>
+
+                <div class="work-card">
+                    <div class="work-visual">
+                        <div class="work-gradient gradient-alt-2"></div>
+                        <div class="work-icon">○</div>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">AI Integration</span>
+                        <h3 class="work-title">Intelligent Customer Service</h3>
+                        <p class="work-text">24/7 AI concierge handling customer inquiries with human-level accuracy and
+                            empathy.</p>
+                        <div class="work-results">
+                            <div class="result">
+                                <span class="result-value">80%</span>
+                                <span class="result-label">Automation Rate</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -375,22 +622,29 @@
     </section>
 
     <!-- CTA Section -->
-    <section id="contact" class="cta-section">
-        <div class="cta-container">
-            <h2 class="cta-title">Ready to build something <span class="emphasis">exceptional</span>?</h2>
-            <p class="cta-subtitle">Let's discuss how we can architect technology that accelerates your business.</p>
+    <section id="contact" class="cta">
+        <div class="cta-bg">
+            <div class="cta-orb cta-orb-1"></div>
+            <div class="cta-orb cta-orb-2"></div>
+        </div>
+        <div class="section-container">
+            <div class="cta-content">
+                <h2 class="cta-title">
+                    Ready to Build Something <span class="gradient-text">Exceptional</span>?
+                </h2>
+                <p class="cta-text">Let's discuss how we can architect technology that accelerates your business and
+                    creates lasting competitive advantage.</p>
 
-            <div class="cta-form-container">
                 <form class="cta-form" id="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
+                    <div class="form-grid">
+                        <div class="form-field">
                             <input type="text" id="name" placeholder="Your Name" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-field">
                             <input type="email" id="email" placeholder="Email Address" required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-field">
                         <select id="project-type" required>
                             <option value="" disabled selected>What do you need?</option>
                             <option value="website">Intelligent Website</option>
@@ -401,25 +655,25 @@
                             <option value="other">Something Else</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-field">
                         <textarea id="message" placeholder="Tell us about your project..." rows="4"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <span>Submit Inquiry</span>
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="1.5" />
+                    <button type="submit" class="btn btn-primary btn-large btn-full">
+                        <span>Start the Conversation</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 16L16 4M16 4H6M16 4V14" stroke="currentColor" stroke-width="2" />
                         </svg>
                     </button>
                 </form>
-            </div>
 
-            <div class="cta-trust">
-                <span>Trusted by industry leaders</span>
-                <div class="trust-logos">
-                    <div class="trust-logo">TechCorp</div>
-                    <div class="trust-logo">Innovate.io</div>
-                    <div class="trust-logo">FutureScale</div>
-                    <div class="trust-logo">DataDriven</div>
+                <div class="trust-bar">
+                    <span>Trusted by forward-thinking companies</span>
+                    <div class="trust-logos">
+                        <span>TechCorp</span>
+                        <span>Innovate.io</span>
+                        <span>FutureScale</span>
+                        <span>DataDriven</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -427,26 +681,39 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
+        <div class="section-container">
             <div class="footer-main">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <span class="logo-text">FLYNERD <span class="logo-accent">TECH</span></span>
+                        <div class="logo-mark">
+                            <svg viewBox="0 0 40 40" fill="none">
+                                <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="url(#footer-logo-grad)"
+                                    stroke-width="2" />
+                                <path d="M20 12L28 16V24L20 28L12 24V16L20 12Z" fill="url(#footer-logo-grad)" />
+                                <defs>
+                                    <linearGradient id="footer-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#6366f1" />
+                                        <stop offset="100%" stop-color="#a855f7" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <span class="logo-text">FLYNERD<span class="logo-accent">TECH</span></span>
                     </a>
                     <p class="footer-tagline">Freethinking Lifestyle Yearners<br>Navigating Every Relevant Domain</p>
                 </div>
 
-                <div class="footer-links">
+                <div class="footer-nav">
                     <div class="footer-col">
                         <h4>Services</h4>
-                        <a href="#capabilities">Intelligent Websites</a>
-                        <a href="#capabilities">E-Commerce</a>
-                        <a href="#capabilities">CRM Systems</a>
-                        <a href="#capabilities">Data Infrastructure</a>
+                        <a href="#services">Intelligent Websites</a>
+                        <a href="#services">E-Commerce Platforms</a>
+                        <a href="#services">CRM & Automation</a>
+                        <a href="#services">Data Infrastructure</a>
                     </div>
                     <div class="footer-col">
                         <h4>Company</h4>
-                        <a href="#process">Our Process</a>
+                        <a href="#process">How We Work</a>
                         <a href="#work">Case Studies</a>
                         <a href="https://flynerdofficial.com" target="_blank">FlyNerd Official</a>
                         <a href="#contact">Contact</a>
@@ -454,7 +721,7 @@
                     <div class="footer-col">
                         <h4>Connect</h4>
                         <a href="#">LinkedIn</a>
-                        <a href="#">Twitter</a>
+                        <a href="#">Twitter / X</a>
                         <a href="#">Instagram</a>
                         <a href="#">GitHub</a>
                     </div>
