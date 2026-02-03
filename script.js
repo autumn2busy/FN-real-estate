@@ -43,7 +43,8 @@ function initParticles() {
             this.speedX = (Math.random() - 0.5) * 0.5;
             this.speedY = (Math.random() - 0.5) * 0.5;
             this.opacity = Math.random() * 0.5 + 0.1;
-            this.hue = Math.random() * 60 + 230; // Purple-blue range
+            // Gold-teal range: gold ~45, teal ~175
+            this.hue = Math.random() > 0.5 ? Math.random() * 20 + 35 : Math.random() * 30 + 170;
         }
 
         update() {
@@ -68,7 +69,7 @@ function initParticles() {
         particles.push(new Particle());
     }
 
-    // Draw connections between nearby particles
+    // Draw connections between nearby particles - gold color
     function drawConnections() {
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
@@ -81,7 +82,7 @@ function initParticles() {
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
+                    ctx.strokeStyle = `rgba(212, 164, 24, ${opacity})`;
                     ctx.lineWidth = 0.5;
                     ctx.stroke();
                 }
@@ -375,5 +376,5 @@ aiNodes.forEach((node, index) => {
     });
 });
 
-console.log('%cFlyNerd Tech', 'font-size: 24px; font-weight: bold; color: #6366f1;');
-console.log('%cAI-Powered Technology Solutions', 'font-size: 12px; color: #a855f7;');
+console.log('%cFlyNerd Tech', 'font-size: 24px; font-weight: bold; color: #D4A418;');
+console.log('%cAI-Powered Technology Solutions | Atlanta', 'font-size: 12px; color: #0D7377;');

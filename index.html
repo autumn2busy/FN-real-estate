@@ -8,10 +8,10 @@
     <meta name="description"
         content="FlyNerd Tech builds custom AI-powered technology stacks for forward-thinking businesses. From intelligent websites to data infrastructure.">
 
-    <!-- Fonts -->
+    <!-- Fonts - Outfit for Modern Editorial Feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
@@ -31,38 +31,45 @@
     <!-- Floating Particles -->
     <canvas id="particles-canvas"></canvas>
 
-    <!-- Navigation -->
+    <!-- Navigation with Centered Glasses Logo -->
     <nav class="nav" id="nav">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <div class="logo-mark">
-                    <svg viewBox="0 0 40 40" fill="none">
-                        <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="url(#logo-grad)" stroke-width="2" />
-                        <path d="M20 12L28 16V24L20 28L12 24V16L20 12Z" fill="url(#logo-grad)" />
-                        <defs>
-                            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#6366f1" />
-                                <stop offset="100%" stop-color="#a855f7" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-                <span class="logo-text">FLYNERD<span class="logo-accent">TECH</span></span>
-            </a>
-
-            <div class="nav-links">
+        <div class="nav-container nav-centered">
+            <!-- Left Nav Links -->
+            <div class="nav-links nav-left">
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#process" class="nav-link">How We Work</a>
-                <a href="#work" class="nav-link">Case Studies</a>
-                <a href="#tech" class="nav-link">Technology</a>
             </div>
 
-            <a href="#contact" class="nav-cta">
-                <span>Let's Talk</span>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M2 14L14 2M14 2H4M14 2V12" stroke="currentColor" stroke-width="2" />
+            <!-- Centered Glasses Logo -->
+            <a href="#" class="logo-center">
+                <svg class="glasses-logo" viewBox="0 0 120 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Left Lens -->
+                    <rect x="5" y="12" width="40" height="25" rx="4" stroke="url(#glasses-grad)" stroke-width="2.5"
+                        fill="none" />
+                    <!-- Right Lens -->
+                    <rect x="75" y="12" width="40" height="25" rx="4" stroke="url(#glasses-grad)" stroke-width="2.5"
+                        fill="none" />
+                    <!-- Bridge -->
+                    <path d="M45 24 Q60 18 75 24" stroke="url(#glasses-grad)" stroke-width="2.5" fill="none" />
+                    <!-- Left Temple -->
+                    <path d="M5 20 L-5 15" stroke="url(#glasses-grad)" stroke-width="2" stroke-linecap="round" />
+                    <!-- Right Temple -->
+                    <path d="M115 20 L125 15" stroke="url(#glasses-grad)" stroke-width="2" stroke-linecap="round" />
+                    <defs>
+                        <linearGradient id="glasses-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#D4A418" />
+                            <stop offset="50%" stop-color="#F4C430" />
+                            <stop offset="100%" stop-color="#D4A418" />
+                        </linearGradient>
+                    </defs>
                 </svg>
             </a>
+
+            <!-- Right Nav Links -->
+            <div class="nav-links nav-right">
+                <a href="#work" class="nav-link">Case Studies</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
 
             <button class="mobile-menu-btn" aria-label="Menu">
                 <span></span>
@@ -72,109 +79,128 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-eyebrow">
-                <div class="eyebrow-line"></div>
-                <span>AI-FIRST TECHNOLOGY PARTNER</span>
-                <div class="eyebrow-line"></div>
-            </div>
+    <!-- Hero Section - Dataforest.ai Style -->
+    <section class="hero hero-fullwidth">
+        <!-- Giant Background Lightbulb (like dataforest globe) -->
+        <div class="hero-bg-lightbulb">
+            <svg class="bg-lightbulb-svg" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="bg-bulb-glow" cx="50%" cy="35%" r="50%" fx="50%" fy="35%">
+                        <stop offset="0%" stop-color="#F4C430" stop-opacity="0.15" />
+                        <stop offset="40%" stop-color="#D4A418" stop-opacity="0.08" />
+                        <stop offset="100%" stop-color="#D4A418" stop-opacity="0" />
+                    </radialGradient>
+                    <linearGradient id="bg-glass-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
+                        <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+                    </linearGradient>
+                    <filter id="bg-glow" x="-100%" y="-100%" width="300%" height="300%">
+                        <feGaussianBlur stdDeviation="20" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                </defs>
+                <!-- Massive Glow -->
+                <circle cx="200" cy="200" r="180" fill="url(#bg-bulb-glow)" class="glow-pulse" />
+                <!-- Glass Bulb Outline -->
+                <ellipse cx="200" cy="200" rx="140" ry="160" fill="url(#bg-glass-grad)" stroke="rgba(212,164,24,0.1)"
+                    stroke-width="1" />
+                <!-- Filament Lines -->
+                <g class="filament" filter="url(#bg-glow)" opacity="0.4">
+                    <path d="M160 280 Q140 200 160 140 Q180 100 200 100 Q220 100 240 140 Q260 200 240 280"
+                        stroke="#F4C430" stroke-width="2" fill="none" />
+                    <path d="M170 260 Q160 200 180 150" stroke="#FFD700" stroke-width="1.5" fill="none" />
+                    <path d="M230 260 Q240 200 220 150" stroke="#FFD700" stroke-width="1.5" fill="none" />
+                </g>
+                <!-- Floating Binary -->
+                <text x="180" y="160" fill="#F4C430" font-size="14" opacity="0.3" class="binary-float">01</text>
+                <text x="210" y="190" fill="#FFD700" font-size="12" opacity="0.25" class="binary-float">10</text>
+                <text x="185" y="220" fill="#F4C430" font-size="14" opacity="0.3" class="binary-float">11</text>
+                <text x="200" y="250" fill="#FFD700" font-size="10" opacity="0.2" class="binary-float">00</text>
+                <!-- Base -->
+                <rect x="160" y="350" width="80" height="30" rx="4" fill="rgba(184,134,11,0.15)" />
+                <rect x="155" y="380" width="90" height="20" rx="4" fill="rgba(184,134,11,0.1)" />
+                <rect x="170" y="400" width="60" height="25" rx="6" fill="rgba(101,67,33,0.1)" />
+            </svg>
+        </div>
 
-            <h1 class="hero-title">
-                <span class="title-line">We Build</span>
-                <span class="title-line">
-                    <span class="gradient-text">AI-Powered</span>
-                </span>
-                <span class="title-line">Technology Stacks</span>
+        <!-- Hero Content - Large Spread Text -->
+        <div class="hero-content-fullwidth">
+            <h1 class="hero-title-mega">
+                <span class="title-word">Freethinking</span>
+                <span class="title-word title-word-accent">Radicals</span>
             </h1>
 
-            <p class="hero-description">
-                Full-spectrum technology solutions engineered for scale. From intelligent
-                websites to enterprise data infrastructure—we architect the systems
-                that power market leaders.
+            <p class="hero-tagline">
+                <span class="tagline-highlight">F</span>reethinking
+                <span class="tagline-highlight">L</span>ifestyle
+                <span class="tagline-highlight">Y</span>earners
+                <span class="tagline-highlight">N</span>avigating
+                <span class="tagline-highlight">E</span>very
+                <span class="tagline-highlight">R</span>elevant
+                <span class="tagline-highlight">D</span>omain
             </p>
 
-            <div class="hero-cta-row">
+            <div class="hero-cta-row hero-cta-center">
                 <a href="#contact" class="btn btn-primary btn-large">
                     <span>Schedule a Call</span>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M4 16L16 4M16 4H6M16 4V14" stroke="currentColor" stroke-width="2" />
                     </svg>
                 </a>
-                <a href="#services" class="btn btn-ghost btn-large">
-                    <span>Explore Services</span>
+                <a href="quiz.html" class="btn btn-ghost btn-large">
+                    <span>AI Readiness Quiz</span>
                 </a>
             </div>
-
-            <div class="hero-metrics">
-                <div class="metric">
-                    <span class="metric-value" data-count="150">0</span>
-                    <span class="metric-suffix">+</span>
-                    <span class="metric-label">Projects Delivered</span>
-                </div>
-                <div class="metric-divider"></div>
-                <div class="metric">
-                    <span class="metric-value" data-count="98">0</span>
-                    <span class="metric-suffix">%</span>
-                    <span class="metric-label">Client Retention</span>
-                </div>
-                <div class="metric-divider"></div>
-                <div class="metric">
-                    <span class="metric-value" data-count="5">0</span>
-                    <span class="metric-suffix">x</span>
-                    <span class="metric-label">Average ROI</span>
-                </div>
-            </div>
         </div>
-
-        <div class="hero-visual">
-            <div class="floating-shapes">
-                <div class="shape shape-1">
-                    <svg viewBox="0 0 100 100" fill="none">
-                        <polygon points="50,5 95,75 5,75" stroke="url(#shape-grad)" stroke-width="1" fill="none" />
-                    </svg>
-                </div>
-                <div class="shape shape-2">
-                    <svg viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="45" stroke="url(#shape-grad)" stroke-width="1" fill="none" />
-                    </svg>
-                </div>
-                <div class="shape shape-3">
-                    <svg viewBox="0 0 100 100" fill="none">
-                        <rect x="10" y="10" width="80" height="80" stroke="url(#shape-grad)" stroke-width="1"
-                            fill="none" transform="rotate(45 50 50)" />
-                    </svg>
-                </div>
-                <div class="shape shape-4">
-                    <svg viewBox="0 0 100 100" fill="none">
-                        <polygon points="50,5 95,50 50,95 5,50" stroke="url(#shape-grad)" stroke-width="1"
-                            fill="none" />
-                    </svg>
-                </div>
-            </div>
-            <div class="central-orb">
-                <div class="orb-ring ring-1"></div>
-                <div class="orb-ring ring-2"></div>
-                <div class="orb-ring ring-3"></div>
-                <div class="orb-core"></div>
-            </div>
-        </div>
-
-        <svg class="hero-defs" width="0" height="0">
-            <defs>
-                <linearGradient id="shape-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#6366f1" stop-opacity="0.6" />
-                    <stop offset="100%" stop-color="#a855f7" stop-opacity="0.3" />
-                </linearGradient>
-            </defs>
-        </svg>
 
         <div class="scroll-indicator">
             <div class="scroll-mouse">
                 <div class="scroll-wheel"></div>
             </div>
             <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Mission Statement Section -->
+    <section id="mission" class="mission-section">
+        <div class="section-container">
+            <div class="mission-content">
+                <h2 class="mission-title">
+                    This is not just a site. <br>
+                    <span class="gradient-text">It's home for Freethinking Radicals.</span>
+                </h2>
+
+                <p class="mission-text">
+                    At FlyNerd, our mission is to <strong>inspire and elevate creative intellectuals</strong>.
+                    We believe that every product we create is an opportunity to refine our craft and learn.
+                    As practitioners and curators of creative culture, we draw inspiration from a diverse array
+                    of artistic expressions, including art, design, fashion, music, tech and beyond.
+                </p>
+
+                <p class="mission-text">
+                    We are dedicated to <strong>pushing the boundaries of creativity and innovation</strong>,
+                    fostering a community that celebrates and nurtures intellectual style and inclusion.
+                </p>
+
+                <div class="mission-pillars">
+                    <div class="pillar">
+                        <span class="pillar-icon">🧠</span>
+                        <span class="pillar-text">Lateral Thinking</span>
+                    </div>
+                    <div class="pillar">
+                        <span class="pillar-icon">🚀</span>
+                        <span class="pillar-text">Radical Creativity</span>
+                    </div>
+                    <div class="pillar">
+                        <span class="pillar-icon">🤝</span>
+                        <span class="pillar-text">Cross-Domain Collaboration</span>
+                    </div>
+                    <div class="pillar">
+                        <span class="pillar-icon">🤖</span>
+                        <span class="pillar-text">AI as the Intern</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -684,23 +710,33 @@
         <div class="section-container">
             <div class="footer-main">
                 <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <div class="logo-mark">
-                            <svg viewBox="0 0 40 40" fill="none">
-                                <path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="url(#footer-logo-grad)"
-                                    stroke-width="2" />
-                                <path d="M20 12L28 16V24L20 28L12 24V16L20 12Z" fill="url(#footer-logo-grad)" />
-                                <defs>
-                                    <linearGradient id="footer-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#6366f1" />
-                                        <stop offset="100%" stop-color="#a855f7" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-                        <span class="logo-text">FLYNERD<span class="logo-accent">TECH</span></span>
+                    <a href="#" class="logo footer-logo">
+                        <svg class="glasses-logo" viewBox="0 0 120 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Left Lens -->
+                            <rect x="5" y="12" width="40" height="25" rx="4" stroke="url(#footer-glasses-grad)"
+                                stroke-width="2.5" fill="none" />
+                            <!-- Right Lens -->
+                            <rect x="75" y="12" width="40" height="25" rx="4" stroke="url(#footer-glasses-grad)"
+                                stroke-width="2.5" fill="none" />
+                            <!-- Bridge -->
+                            <path d="M45 24 Q60 18 75 24" stroke="url(#footer-glasses-grad)" stroke-width="2.5"
+                                fill="none" />
+                            <!-- Temple hints -->
+                            <path d="M5 20 L-5 15" stroke="url(#footer-glasses-grad)" stroke-width="2"
+                                stroke-linecap="round" />
+                            <path d="M115 20 L125 15" stroke="url(#footer-glasses-grad)" stroke-width="2"
+                                stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="footer-glasses-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#D4A418" />
+                                    <stop offset="50%" stop-color="#F4C430" />
+                                    <stop offset="100%" stop-color="#D4A418" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span class="logo-text footer-logo-text">FLYNERD<span class="logo-accent">TECH</span></span>
                     </a>
-                    <p class="footer-tagline">Freethinking Lifestyle Yearners<br>Navigating Every Relevant Domain</p>
+                    <p class="footer-tagline">Home for Freethinking Radicals<br>Where AI is the Intern</p>
                 </div>
 
                 <div class="footer-nav">
