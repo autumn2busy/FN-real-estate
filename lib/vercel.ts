@@ -16,10 +16,6 @@ export async function cloneAndDeployTemplate(projectName: string, _templateRepo:
       ? await deployRes.json()
       : await deployRes.text();
 
-    const contentType = deployRes.headers.get("content-type") || "";
-    const deployData = contentType.includes("application/json")
-      ? await deployRes.json()
-      : await deployRes.text();
 
     if (!deployRes.ok) {
       console.warn("[Vercel API] Deploy hook rejected request:", deployData);
