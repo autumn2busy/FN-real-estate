@@ -1,41 +1,37 @@
-export async function cloneAndDeployTemplate(projectName: string, templateRepo: string) {
-  const token = process.env.VERCEL_API_TOKEN;
-  if (!token) throw new Error("Missing VERCEL_API_TOKEN");
+export async function cloneAndDeployTemplate(projectName: string, _templateRepo: string) {
+  const fallbackUrl = "https://flynerd-real-estate-autumn2busy.vercel.app";
+  const deployHookUrl = process.env.VERCEL_DEPLOY_HOOK_URL;
 
-  const teamId = "team_uSLsRZHA5u8JAkI9tVVipAFi";
-  
-  // Use a stable, pre-linked project name to bypass API creation restrictions
-  const targetProject = "flynerd-demo-lead";
+  console.log(`[Vercel API] Triggering deployment for flynerd-demo-lead (Lead: ${projectName})...`);
 
-  console.log(`[Vercel API] Triggering deployment for ${targetProject} (Lead: ${projectName})...`);
-
-  // Fallback domain in case the project doesn't exist yet
-  const fallbackUrl = `https://flynerd-real-estate-autumn2busy.vercel.app`;
-
-  try {
-    const deployRes = await fetch(`https://api.vercel.com/v13/deployments?teamId=${teamId}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: projectName,
-        project: targetProject, 
-        target: "production",
-      }),
-    });
-
-    if (!deployRes.ok) {
-      console.warn(`[Vercel API] Deployment could not be triggered automatically. Fallback to: ${fallbackUrl}`);
-    } else {
-      console.log(`[Vercel API] Deployment process initiated.`);
-    }
-  } catch (err) {
-    console.warn(`[Vercel API] Network error during deployment:`, err);
+  if (!deployHookUrl) {
+    console.warn("[Vercel API] Missing VERCEL_DEPLOY_HOOK_URL. Skipping API deployment trigger and using fallback URL.");
+    return fallbackUrl;
   }
 
-  // Return the best available URL
-  return fallbackUrl;
-}
+  try {
+    const deployRes = await fetch(deployHookUrl, { method: "POST" });
+    const contentType = deployRes.headers.get("content-type") || "";
+    const deployData = contentType.includes("application/json")
+      ? await deployRes.json()
+      : await deployRes.text();
 
+    if (!deployRes.ok) {
+      console.warn("[Vercel API] Deploy hook rejected request:", deployData);
+      console.warn(`[Vercel API] Falling back to: ${fallbackUrl}`);
+      return fallbackUrl;
+    }
+
+    const deploymentUrl =
+      typeof deployData === "object" && deployData?.url
+        ? `https://${deployData.url}`
+        : fallbackUrl;
+
+    console.log(`[Vercel API] Deployment process initiated: ${deploymentUrl}`);
+    return deploymentUrl;
+  } catch (err) {
+    console.warn("[Vercel API] Network error during deploy hook call:", err);
+    console.warn(`[Vercel API] Falling back to: ${fallbackUrl}`);
+    return fallbackUrl;
+  }
+}
