@@ -55,7 +55,7 @@ export async function generateAvatarVideo(scriptText: string, businessName: stri
     attempts++;
 
     try {
-      const statusRes = await fetch(`https://api.heygen.com/v2/video/detail?video_id=${videoId}`, {
+      const statusRes = await fetch(`https://api.heygen.com/v1/video_status.get?video_id=${videoId}`, {
         method: "GET",
         headers: { "X-Api-Key": apiKey }
       });
