@@ -9,6 +9,7 @@ async function seedTestLead() {
         businessName: "Test Plumbing Co",
         niche: "plumber",
         status: "PITCHED",
+        placeId: "test-place-id",
         contactEmail: "test@flynerd.tech",
         intelScore: 85,
         intelData: {
