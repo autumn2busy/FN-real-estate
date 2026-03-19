@@ -14,7 +14,7 @@ export async function cloneAndDeployTemplate(projectName: string, _templateRepo:
       const hookRes = await fetch(deployHookUrl, { method: "POST" });
       if (hookRes.ok) {
         console.log("[Vercel API] Deployment hook accepted.");
-        return fallbackUrl;
+        return `${fallbackUrl}/demo/${projectName.split("-").pop()}`;
       }
 
       const hookText = await hookRes.text();
@@ -49,15 +49,15 @@ export async function cloneAndDeployTemplate(projectName: string, _templateRepo:
       return fallbackUrl;
     }
 
-    const deploymentUrl =
-      typeof deployData === "object" && deployData?.url
-        ? `https://${deployData.url}`
-        : fallbackUrl;
+    const leadId = projectName.split("-").pop();
+    const finalUrl = typeof deployData === "object" && deployData?.url
+        ? `https://${deployData.url}/demo/${leadId}`
+        : `${fallbackUrl}/demo/${leadId}`;
 
-    console.log(`[Vercel API] Deployment process initiated: ${deploymentUrl}`);
-    return deploymentUrl;
+    console.log(`[Vercel API] Deployment process initiated: ${finalUrl}`);
+    return finalUrl;
   } catch (err) {
     console.warn("[Vercel API] Network error during deployment:", err);
-    return fallbackUrl;
+    return `${fallbackUrl}/demo/${projectName.split("-").pop()}`;
   }
 }
