@@ -59,7 +59,6 @@ export async function generateAvatarVideo(scriptText: string, businessName: stri
     attempts++;
 
     try {
-      // Per HeyGen docs, status endpoint is v1/video_status.get even for v2 generation.
       const statusRes = await fetch(`https://api.heygen.com/v1/video_status.get?video_id=${videoId}`, {
         method: "GET",
         headers: { "X-Api-Key": apiKey },
