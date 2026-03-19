@@ -1,17 +1,20 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import Groq from "groq-sdk";
-import { upsertContact, addTagToContact } from "@/lib/activecampaign";
+import { upsertContact, addTagToContact, getDealsByContact, updateDealStage } from "@/lib/activecampaign";
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
-// POST /api/agents/closer (Webhook from Inbound Email/AC)
+// ActiveCampaign Stage IDs (Flynerd Auto-Pilot Pipeline)
+const STAGE_NEGOTIATING = "12";
+const STAGE_CLOSED_WON = "13";
+
+// POST /api/agents/closer (Webhook from Inbound Email/n8n)
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    // Assuming ActiveCampaign sends a webhook on reply or we use a manual trigger
     const { From, TextBody } = body;
 
     if (!From || !TextBody) {
@@ -25,12 +28,13 @@ export async function POST(req: Request) {
 
     if (!lead) return NextResponse.json({ message: "No lead found" });
 
-    // Update status
+    // 1. Update DB status
     await prisma.agencyLead.update({
       where: { id: lead.id },
       data: { status: "NEGOTIATING" },
     });
 
+    // 2. Generate AI response
     const prompt = `Handle objection for ${lead.businessName}: "${TextBody}". Push to Stripe ${process.env.STRIPE_PAYMENT_LINK}`;
 
     const completion = await groq.chat.completions.create({
@@ -40,18 +44,25 @@ export async function POST(req: Request) {
 
     const aiReplyDraft = completion.choices[0]?.message?.content || "";
 
-    // In ActiveCampaign, you might trigger an automation with this draft
-    // or use a Note/Custom Field that a human or AC automation sends.
-    // For now, we'll tag them to signify an AI response is ready.
+    // 3. ActiveCampaign: Tag + Move Deal to "Negotiating" stage
     const contactRes = await upsertContact(leadEmail, lead.businessName, "Business");
     const contactId = contactRes.contact?.id;
     
     if (contactId) {
       await addTagToContact(contactId, "AI_REPLY_READY");
+
+      // Find the contact's open deal and move it to Negotiating
+      const dealsRes = await getDealsByContact(contactId);
+      const openDeal = dealsRes.deals?.find((d: any) => d.status === "0"); // status 0 = Open
+      
+      if (openDeal) {
+        await updateDealStage(openDeal.id, STAGE_NEGOTIATING);
+        console.log(`[Closer Agent] Moved Deal ${openDeal.id} to Stage: Negotiating`);
+      }
     }
 
     return NextResponse.json({
-      message: "Reply processed via Groq. Lead tagged in ActiveCampaign.",
+      message: "Reply processed via Groq. Deal moved to Negotiating.",
       draftedReply: aiReplyDraft,
     });
   } catch (error: any) {
@@ -59,3 +70,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
+

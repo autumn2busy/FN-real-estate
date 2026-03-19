@@ -1,0 +1,72 @@
+{
+    "name": "Flynerd Closer Agent Router",
+    "nodes": [
+        {
+            "parameters": {
+                "pollTimes": {
+                    "item": [
+                        {
+                            "mode": "everyMinute"
+                        }
+                    ]
+                },
+                "labels": [
+                    "INBOX"
+                ],
+                "format": "resolved",
+                "options": {
+                    "markAsRead": false
+                }
+            },
+            "id": "b182fb06-6c1f-4ee7-9195-2aa0639d6ff5",
+            "name": "Gmail Trigger",
+            "type": "n8n-nodes-base.gmailTrigger",
+            "typeVersion": 1,
+            "position": [
+                820,
+                360
+            ]
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://your-domain.vercel.app/api/agents/closer",
+                "sendBody": true,
+                "specifyBody": "json",
+                "jsonBody": "={\n  \"From\": \"{{ $json.from.value[0].address }}\",\n  \"TextBody\": \"{{ $json.textPlain }}\"\n}",
+                "options": {}
+            },
+            "id": "e6dd5bcb-af91-4cf5-9cd7-f9d273a0a38b",
+            "name": "Closer Agent (Next.js webhook)",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.1,
+            "position": [
+                1040,
+                360
+            ]
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Gmail Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Closer Agent (Next.js webhook)",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1"
+    },
+    "versionId": "f0412eab-eebb-4131-ab7d-9273f5507567",
+    "meta": {
+        "instanceId": "cb402cb7fa1551a81bb1a021025539d"
+    },
+    "tags": []
+}

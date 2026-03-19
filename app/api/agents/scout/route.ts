@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 
-console.log("[Scout Agent] Route file LOADED");
-
 // POST /api/agents/scout
 export async function POST(req: Request) {
   console.log("[Scout Agent] Received POST request");
@@ -111,7 +109,6 @@ export async function POST(req: Request) {
     });
   } catch (error: any) {
     console.error("[Scout Agent] ERROR:", error);
-    console.error("[Scout Agent] STACK:", error.stack);
     return NextResponse.json(
       { error: "Internal Server Error", message: error.message },
       { status: 500 }
