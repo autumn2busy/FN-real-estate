@@ -2,6 +2,9 @@ export async function generateAvatarVideo(scriptText: string, businessName: stri
   const apiKey = process.env.HEYGEN_API_KEY;
   if (!apiKey) throw new Error("HEYGEN_API_KEY is missing");
 
+  const avatarId = process.env.HEYGEN_AVATAR_ID || "Abigail_expressive_2024112501";
+  const voiceId = process.env.HEYGEN_VOICE_ID || "f38a635bee7a4d1f9b0a654a31d050d2";
+
   console.log(`[HeyGen API] Submitting video generation job for ${businessName}...`);
 
   const submitRes = await fetch("https://api.heygen.com/v2/video/generate", {
@@ -15,13 +18,13 @@ export async function generateAvatarVideo(scriptText: string, businessName: stri
         {
           character: {
             type: "avatar",
-            avatar_id: "Abigail_expressive_2024112501",
+            avatar_id: avatarId,
             avatar_style: "normal",
           },
           voice: {
             type: "text",
             input_text: scriptText,
-            voice_id: "f38a635bee7a4d1f9b0a654a31d050d2", // Chill Brian - English
+            voice_id: voiceId,
           },
         },
       ],
@@ -48,6 +51,7 @@ export async function generateAvatarVideo(scriptText: string, businessName: stri
   let status = "processing";
   let attempts = 0;
   let completedVideoUrl = "";
+  let failureReason = "";
   const maxAttempts = 20; // 10 minutes max (30s * 20)
 
   while ((status === "processing" || status === "waiting" || status === "pending") && attempts < maxAttempts) {
@@ -76,6 +80,12 @@ export async function generateAvatarVideo(scriptText: string, businessName: stri
       const rawStatus = statusData?.data?.status || statusData?.status || "processing";
       status = String(rawStatus).toLowerCase();
 
+      failureReason =
+        statusData?.data?.error ||
+        statusData?.data?.error_message ||
+        statusData?.error ||
+        failureReason;
+
       completedVideoUrl =
         statusData?.data?.video_url ||
         statusData?.data?.url ||
@@ -91,6 +101,10 @@ export async function generateAvatarVideo(scriptText: string, businessName: stri
   if (status === "completed") {
     console.log("[HeyGen API] Video completed! Link ready.");
     return completedVideoUrl || `https://app.heygen.com/share/${videoId}`;
+  }
+
+  if (status === "failed") {
+    console.warn(`[HeyGen API] Video generation failed: ${failureReason || "No reason returned by HeyGen."}`);
   }
 
   console.warn(`[HeyGen API] Video still in ${status} after ${attempts} attempts. Returning fallback link.`);
