@@ -6,7 +6,21 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
-// POST /api/agents/intel
+// ─────────────────────────────────────────────────────────────────────────────
+// Intel Agent — v2  (Yelp Fusion only)
+//
+// Yelp Fusion API calls:
+//   GET /v3/businesses/{id}            → rating, review_count, categories,
+//                                        location, hours, price, photos
+//   GET /v3/businesses/{id}/reviews    → up to 3 review snippets (Fusion limit)
+//
+// New intelData fields:
+//   brandColors      { name, primary, accent, rationale }   ← selectedPalette
+//   brandPalettes    [ ...3 options ]
+//   operatingContext  string
+//   socialProofPoints string[]   (up to 3)
+// ─────────────────────────────────────────────────────────────────────────────
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -19,84 +33,135 @@ export async function POST(req: Request) {
       );
     }
 
-    const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
     const YELP_API_KEY = process.env.YELP_API_KEY;
-
-    if (!GOOGLE_PLACES_API_KEY && !YELP_API_KEY) {
+    if (!YELP_API_KEY) {
       return NextResponse.json(
-        { error: "Missing both GOOGLE_PLACES_API_KEY and YELP_API_KEY in environment" },
+        { error: "Missing YELP_API_KEY in environment" },
         { status: 500 }
       );
     }
 
-    let reviews = [];
+    // ── 1. Business Details (rating, categories, price, hours) ──────────────
+    // placeId is the Yelp business ID stored by the Scout agent (b.id)
+    const detailsRes = await fetch(
+      `https://api.yelp.com/v3/businesses/${placeId}`,
+      { headers: { Authorization: `Bearer ${YELP_API_KEY}` } }
+    );
+
     let rating = 0;
-    let userRatingCount = 0;
+    let reviewCount = 0;
+    let categories: string[] = [];
+    let priceRange = "";
+    let city = "";
 
-    if (GOOGLE_PLACES_API_KEY) {
-      // 1. Fetch Google Places Details (Reviews)
-      const placesResponse = await fetch(
-        `https://places.googleapis.com/v1/places/${placeId}?languageCode=en`,
-        {
-          method: "GET",
-          headers: {
-            "X-Goog-Api-Key": GOOGLE_PLACES_API_KEY,
-            "X-Goog-FieldMask": "reviews,rating,userRatingCount",
-          },
-        }
+    if (detailsRes.ok) {
+      const details = await detailsRes.json();
+      rating = details.rating ?? 0;
+      reviewCount = details.review_count ?? 0;
+      categories = (details.categories || []).map((c: any) => c.title);
+      priceRange = details.price || "";
+      city = details.location?.city || "";
+    } else {
+      console.warn(
+        `[Intel Agent] Yelp business details fetch failed (${detailsRes.status}) for placeId: ${placeId}`
       );
-
-      if (placesResponse.ok) {
-        const placeData = await placesResponse.json();
-        reviews = placeData.reviews || [];
-        rating = placeData.rating || 0;
-        userRatingCount = placeData.userRatingCount || 0;
-      }
-    } else if (YELP_API_KEY) {
-      // 1. Fetch Yelp Business Reviews
-      const reviewsResponse = await fetch(
-        `https://api.yelp.com/v3/businesses/${placeId}/reviews`,
-        {
-          headers: { Authorization: `Bearer ${YELP_API_KEY}` },
-        }
-      );
-
-      if (reviewsResponse.ok) {
-        const data = await reviewsResponse.json();
-        reviews = data.reviews || [];
-        // Note: Yelp Reviews API doesn't return the business rating, 
-        // normally you'd get that from the business details API.
-        // For now we assume a neutral rating if only reviews are fetched.
-        rating = 4.0; 
-      }
     }
 
-    // 2. Prepare reviews for OpenAI analysis
+    // ── 2. Reviews (Yelp Fusion returns max 3 per free/standard tier) ───────
+    const reviewsRes = await fetch(
+      `https://api.yelp.com/v3/businesses/${placeId}/reviews?limit=3&sort_by=yelp_sort`,
+      { headers: { Authorization: `Bearer ${YELP_API_KEY}` } }
+    );
+
+    let reviews: any[] = [];
+    if (reviewsRes.ok) {
+      const reviewsData = await reviewsRes.json();
+      reviews = reviewsData.reviews || [];
+    } else {
+      console.warn(
+        `[Intel Agent] Yelp reviews fetch failed (${reviewsRes.status}) for placeId: ${placeId}`
+      );
+    }
+
+    // ── 3. Build review text for Groq ────────────────────────────────────────
+    // Yelp review objects: { id, rating, text, time_created, url, user: { name } }
+    // Note: Yelp truncates review text to ~160 chars on free tier
     let reviewsText = "No reviews available.";
     if (reviews.length > 0) {
       reviewsText = reviews
-        .map((r: any) => `Review (${r.rating} stars): ${r.text?.text || "No text"}`)
+        .map(
+          (r: any) =>
+            `Review (${r.rating} stars): ${r.text || "No text"}`
+        )
         .join("\n");
     }
 
-    // 3. AI Analysis (Intel Agent Core)
+    // Enrich the prompt with Yelp-specific structured data we already have
+    const categoryStr =
+      categories.length > 0 ? categories.join(", ") : "unknown niche";
+    const contextHint = [
+      categoryStr && `Categories: ${categoryStr}`,
+      priceRange && `Price range: ${priceRange}`,
+      city && `City: ${city}`,
+    ]
+      .filter(Boolean)
+      .join(" | ");
+
+    // ── 4. Groq — single call for all intel + brand palettes ────────────────
     const prompt = `
-    Analyze the following reviews and rating for "${businessName}" (${rating} stars).
-    The business currently has NO official website.
-    
-    1. Determine a "Web Opportunity Score" from 0 to 100 on how badly they need a website and how likely they are to buy one based on their reputation.
-    2. Extract up to 3 key pain points or customer complaints from these reviews that a professional website could help solve (e.g., "hard to find contact info", "unclear pricing formatting").
+You are a brand strategist and conversion analyst. Analyze the following Yelp data for "${businessName}" (${rating} stars, ${reviewCount} total reviews).
+Business context: ${contextHint}
+This business currently has NO official website.
 
-    Return the analysis strictly in the following JSON format:
+Return ONLY a valid JSON object with these exact fields — no markdown, no preamble:
+
+{
+  "opportunityScore": <integer 0-100, how badly they need a website and likelihood to buy>,
+  "painPoints": [<up to 3 short strings — key customer complaints a professional website would solve>],
+  "reputationSummary": "<1 sentence summary of their online reputation>",
+  "operatingContext": "<1-2 sentences describing the specific services they are known for, inferred from categories and reviews>",
+  "socialProofPoints": [
+    "<most compelling review excerpt, under 20 words>",
+    "<second best excerpt, under 20 words>",
+    "<third best excerpt, under 20 words>"
+  ],
+  "brandPalettes": [
     {
-      "opportunityScore": 85,
-      "painPoints": ["Customer couldn't find...", "No pricing visible..."],
-      "reputationSummary": "A brief 1-sentence summary of their online reputation."
+      "name": "<descriptive palette name, e.g. 'Modern Authority'>",
+      "primary": "<6-digit hex>",
+      "accent": "<6-digit hex>",
+      "rationale": "<1 sentence why this fits the brand>"
+    },
+    {
+      "name": "<descriptive palette name>",
+      "primary": "<6-digit hex>",
+      "accent": "<6-digit hex>",
+      "rationale": "<1 sentence why this fits the brand>"
+    },
+    {
+      "name": "<descriptive palette name>",
+      "primary": "<6-digit hex>",
+      "accent": "<6-digit hex>",
+      "rationale": "<1 sentence why this fits the brand>"
     }
+  ],
+  "selectedPalette": {
+    "name": "<name of the best palette from the 3 above>",
+    "primary": "<6-digit hex>",
+    "accent": "<6-digit hex>",
+    "rationale": "<why this is the overall best fit>"
+  }
+}
 
-    Reviews:
-    ${reviewsText}
-    `;
+Palette rules:
+- Use the business niche/categories, city, price range, review tone, and business name to inform palette choices
+- No pure black (#000000) or pure white (#ffffff) as primary or accent
+- All 3 palettes must be meaningfully distinct from each other
+- For socialProofPoints: if reviews are truncated, use the best available wording. If fewer than 3 reviews exist, only include what is available.
+
+Yelp Reviews:
+${reviewsText}
+`;
 
     const completion = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
@@ -107,18 +172,34 @@ export async function POST(req: Request) {
     const aiAnalysisRaw = completion.choices[0]?.message?.content || "{}";
     const aiAnalysis = JSON.parse(aiAnalysisRaw);
 
-    // 4. Update the DB: AgencyLead
+    // ── 5. Assemble intelData and persist ────────────────────────────────────
+    const intelData = {
+      // Yelp structured data (real values, not hardcoded)
+      rating,
+      reviewCount,
+      categories,
+      priceRange,
+      city,
+      // AI-derived fields
+      painPoints: aiAnalysis.painPoints || [],
+      reputationSummary: aiAnalysis.reputationSummary || "",
+      operatingContext: aiAnalysis.operatingContext || "",
+      socialProofPoints: (aiAnalysis.socialProofPoints || []).slice(0, 3),
+      brandPalettes: aiAnalysis.brandPalettes || [],
+      brandColors: aiAnalysis.selectedPalette || {
+        name: "Default",
+        primary: "#1a1a2e",
+        accent: "#e8b923",
+        rationale: "Fallback palette.",
+      },
+    };
+
     const updatedLead = await prisma.agencyLead.update({
       where: { id: leadId },
       data: {
         status: "AUDITED",
         intelScore: aiAnalysis.opportunityScore || 50,
-        intelData: {
-          rating,
-          reviewCount: userRatingCount || reviews.length,
-          painPoints: aiAnalysis.painPoints || [],
-          reputationSummary: aiAnalysis.reputationSummary || "",
-        },
+        intelData,
       },
     });
 

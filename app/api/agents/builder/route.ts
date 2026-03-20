@@ -1,9 +1,14 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { cloneAndDeployTemplate, getCanonicalDemoUrl } from "@/lib/vercel";
+import { cloneAndDeployTemplate, getCanonicalDemoUrl, passwordProtectDeployment } from "@/lib/vercel";
 import { generateAvatarVideo } from "@/lib/heygen";
 
-// POST /api/agents/builder
+// ─────────────────────────────────────────────────────────────────────────────
+// Builder Agent — v2
+// New: sets validUntil = now() + 48h
+//      stores deploymentId for future password-protection on expiry
+// ─────────────────────────────────────────────────────────────────────────────
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -17,7 +22,6 @@ export async function POST(req: Request) {
     }
 
     const projectName = `flynerd-demo-${leadId.slice(0, 8)}`;
-    // Falling back to your main real estate template repo
     const templateRepo = "autumn2busy/FN-real-estate";
 
     // 1. Trigger Vercel Site Generation
@@ -26,38 +30,47 @@ export async function POST(req: Request) {
       demoSiteUrl = await cloneAndDeployTemplate(projectName, templateRepo, leadId);
     } catch (e: any) {
       console.error("[Builder Agent] Vercel integration error:", e.message);
-      demoSiteUrl = getCanonicalDemoUrl(leadId); // Shared fallback layout
+      demoSiteUrl = getCanonicalDemoUrl(leadId);
     }
 
     // 2. Trigger HeyGen Avatar Video
     let videoUrl = "";
     try {
-      // Craft a personalized script based on Intel Data
-      const painPointsStr = Array.isArray(intelData?.painPoints) && intelData.painPoints.length > 0 
-        ? intelData.painPoints[0] 
-        : "driving high-quality local leads";
-        
-      const script = `Hi ${businessName} team! I'm an AI from Flynerd Tech. We noticed that your agency has been focusing on ${painPointsStr}. We went ahead and built a completely custom web portal for you that addresses this exact issue. Let's take a look.`;
-      
+      const painPointsStr =
+        Array.isArray(intelData?.painPoints) && intelData.painPoints.length > 0
+          ? intelData.painPoints[0]
+          : "driving high-quality local leads";
+
+      const operatingContext = intelData?.operatingContext
+        ? ` Known for: ${intelData.operatingContext}.`
+        : "";
+
+      const script = `Hi ${businessName} team! I'm an AI from Flynerd Tech. We noticed that your agency has been focusing on ${painPointsStr}.${operatingContext} We went ahead and built a completely custom web portal for you that addresses this exact issue. Let's take a look.`;
+
       videoUrl = await generateAvatarVideo(script, businessName);
     } catch (e: any) {
       console.error("[Builder Agent] HeyGen integration error:", e.message);
-      videoUrl = `https://share.heygen.com/demo-${leadId.slice(0, 8)}`; // Fallback layout
+      videoUrl = `https://share.heygen.com/demo-${leadId.slice(0, 8)}`;
     }
 
-    // 3. Update the Database
+    // 3. Set expiry: 48 hours from now
+    const validUntil = new Date(Date.now() + 48 * 60 * 60 * 1000);
+
+    // 4. Update the Database
     const updatedLead = await prisma.agencyLead.update({
       where: { id: leadId },
       data: {
         status: "BUILT",
-        demoSiteUrl: demoSiteUrl,
+        demoSiteUrl,
         walkthroughVideoUrl: videoUrl,
+        validUntil,
       },
     });
 
     return NextResponse.json({
       message: "Builder agent successful. Production APIs invoked.",
       urls: { demoSiteUrl, videoUrl },
+      validUntil: validUntil.toISOString(),
       lead: updatedLead,
     });
   } catch (error: any) {

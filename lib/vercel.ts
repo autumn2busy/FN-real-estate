@@ -76,3 +76,50 @@ export async function cloneAndDeployTemplate(
     return getCanonicalDemoUrl(leadId);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// passwordProtectDeployment
+// Called by the expiry cron/webhook. Sets password protection on the Vercel
+// project via the Protection Bypass API so expired demos still exist but
+// are gated behind a password (the lead's ID, rotated on re-grant).
+// ─────────────────────────────────────────────────────────────────────────────
+export async function passwordProtectDeployment(
+  projectName: string,
+  bypassSecret: string
+): Promise<{ ok: boolean; error?: string }> {
+  const token = process.env.VERCEL_API_TOKEN;
+  if (!token) return { ok: false, error: "Missing VERCEL_API_TOKEN" };
+
+  const teamId = "team_uSLsRZHA5u8JAkI9tVVipAFi";
+
+  try {
+    // Enable Deployment Protection on the project
+    const res = await fetch(
+      `https://api.vercel.com/v9/projects/${projectName}?teamId=${teamId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          passwordProtection: {
+            deploymentType: "all",
+            password: bypassSecret,
+          },
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const err = await res.text();
+      console.error("[Vercel] passwordProtectDeployment failed:", err);
+      return { ok: false, error: err };
+    }
+
+    console.log(`[Vercel] Password protection enabled for project: ${projectName}`);
+    return { ok: true };
+  } catch (err: any) {
+    return { ok: false, error: err.message };
+  }
+}
