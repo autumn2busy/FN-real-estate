@@ -1,10 +1,20 @@
-export async function cloneAndDeployTemplate(projectName: string, _templateRepo: string) {
+const FALLBACK_BASE_URL = "https://flynerd-demo-lead.vercel.app";
+
+export function getCanonicalDemoUrl(leadId: string, deploymentHost?: string) {
+  const base = deploymentHost ? `https://${deploymentHost}` : FALLBACK_BASE_URL;
+  return `${base}/demo/${leadId}`;
+}
+
+export async function cloneAndDeployTemplate(
+  projectName: string,
+  _templateRepo: string,
+  leadId: string
+) {
   const token = process.env.VERCEL_API_TOKEN;
   if (!token) throw new Error("Missing VERCEL_API_TOKEN");
 
   const teamId = "team_uSLsRZHA5u8JAkI9tVVipAFi";
   const targetProject = "flynerd-demo-lead";
-  const fallbackUrl = "https://flynerd-demo-lead.vercel.app";
 
   console.log(`[Vercel API] Triggering deployment for ${targetProject} (Lead: ${projectName})...`);
 
@@ -15,7 +25,7 @@ export async function cloneAndDeployTemplate(projectName: string, _templateRepo:
       const hookRes = await fetch(deployHookUrl, { method: "POST" });
       if (hookRes.ok) {
         console.log("[Vercel API] Deployment hook accepted.");
-        return `${fallbackUrl}/demo/${projectName.split("-").pop()}`;
+        return getCanonicalDemoUrl(leadId);
       }
       const hookText = await hookRes.text();
       console.warn(`[Vercel API] Deployment hook failed (${hookRes.status}): ${hookText.slice(0, 200)}`);
@@ -50,19 +60,19 @@ export async function cloneAndDeployTemplate(projectName: string, _templateRepo:
 
     if (!deployRes.ok) {
       console.warn("[Vercel API] Deployment could not be triggered automatically:", deployData);
-      console.warn(`[Vercel API] Falling back to: ${fallbackUrl}`);
-      return fallbackUrl;
+      const fallback = getCanonicalDemoUrl(leadId);
+      console.warn(`[Vercel API] Falling back to: ${fallback}`);
+      return fallback;
     }
 
-    const leadId = projectName.split("-").pop();
-    const finalUrl = (typeof deployData === "object" && deployData?.url)
-        ? `https://${deployData.url}/demo/${leadId}`
-        : `${fallbackUrl}/demo/${leadId}`;
+    const deploymentHost =
+      typeof deployData === "object" && deployData?.url ? deployData.url : undefined;
+    const canonicalUrl = getCanonicalDemoUrl(leadId, deploymentHost);
 
-    console.log(`[Vercel API] Deployment process initiated: ${finalUrl}`);
-    return finalUrl;
+    console.log(`[Vercel API] Deployment process initiated: ${canonicalUrl}`);
+    return canonicalUrl;
   } catch (err) {
     console.warn("[Vercel API] Network error during deployment:", err);
-    return `${fallbackUrl}/demo/${projectName.split("-").pop()}`;
+    return getCanonicalDemoUrl(leadId);
   }
 }
