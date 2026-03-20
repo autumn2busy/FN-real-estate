@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MoveRight, CheckCircle2, Globe, ShieldCheck, Zap } from "lucide-react";
 
-export default async function LeadDemoPage({ params }: { params: { leadId: string } }) {
-  const { leadId } = params;
+export default async function LeadDemoPage({ params }: { params: Promise<{ leadId: string }> }) {
+  const { leadId } = await params;
 
   const lead = await prisma.agencyLead.findUnique({
     where: { id: leadId },
@@ -77,12 +77,21 @@ export default async function LeadDemoPage({ params }: { params: { leadId: strin
               <div className="absolute -inset-4 bg-yellow-400/20 rounded-[2.5rem] blur-2xl group-hover:bg-yellow-400/30 transition-all duration-500 opacity-0 group-hover:opacity-100" />
               <div className="relative rounded-3xl border border-white/10 bg-neutral-900 shadow-2xl overflow-hidden aspect-video flex items-center justify-center">
                 {lead.walkthroughVideoUrl ? (
-                  <iframe 
-                    src={lead.walkthroughVideoUrl.replace("/share/", "/embed/")}
-                    className="w-full h-full border-0"
-                    allowFullScreen
-                    allow="autoplay"
-                  />
+                  lead.walkthroughVideoUrl.includes(".mp4") ? (
+                    <video 
+                      src={lead.walkthroughVideoUrl}
+                      controls
+                      autoPlay
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <iframe 
+                      src={lead.walkthroughVideoUrl.includes("/share/") ? lead.walkthroughVideoUrl.replace("/share/", "/embed/") : lead.walkthroughVideoUrl}
+                      className="w-full h-full border-0"
+                      allowFullScreen
+                      allow="autoplay"
+                    />
+                  )
                 ) : (
                   <div className="text-center p-8 space-y-4">
                     <div className="w-16 h-16 bg-neutral-800 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/5">
