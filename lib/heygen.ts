@@ -9,9 +9,35 @@ export async function generateAvatarVideo(scriptText: string, businessName: stri
   if (!apiKey) throw new Error("HEYGEN_API_KEY is missing");
 
   const avatarId = process.env.HEYGEN_AVATAR_ID || "Imelda_Business_Front_public";
+  const lookId = process.env.HEYGEN_LOOK_ID;
+  const spaceId = process.env.HEYGEN_SPACE_ID;
   const voiceId = process.env.HEYGEN_VOICE_ID || "6e05e310c3f14ed4ba1545578ce82ff6";
 
+  const character: Record<string, string> = {
+    type: "avatar",
+    avatar_style: "normal",
+  };
+
+  let characterMode: "avatar" | "look" = "avatar";
+  let modeSource = process.env.HEYGEN_AVATAR_ID ? "HEYGEN_AVATAR_ID" : "HEYGEN_AVATAR_ID (default)";
+
+  if (lookId) {
+    characterMode = "look";
+    modeSource = spaceId ? "HEYGEN_LOOK_ID + HEYGEN_SPACE_ID" : "HEYGEN_LOOK_ID";
+    character.look_id = lookId;
+    if (spaceId) {
+      character.space_id = spaceId;
+    }
+  } else {
+    character.avatar_id = avatarId;
+  }
+
   console.log(`[HeyGen API] Submitting video generation job for ${businessName}...`);
+  console.log(
+    `[HeyGen API] Character mode selected: ${characterMode} (source: ${modeSource}). Env status -> HEYGEN_AVATAR_ID: ${
+      process.env.HEYGEN_AVATAR_ID ? "set" : "unset (using default)"
+    }, HEYGEN_LOOK_ID: ${lookId ? "set" : "unset"}, HEYGEN_SPACE_ID: ${spaceId ? "set" : "unset"}.`,
+  );
 
   const submitRes = await fetch("https://api.heygen.com/v2/video/generate", {
     method: "POST",
@@ -22,12 +48,7 @@ export async function generateAvatarVideo(scriptText: string, businessName: stri
     body: JSON.stringify({
       video_inputs: [
         {
-          character: {
-            type: "avatar",
-            avatar_id: avatarId.includes("_") ? avatarId : undefined, // Standard avatars have underscores
-            look_id: !avatarId.includes("_") ? avatarId : undefined, // Numeric IDs are usually Looks
-            avatar_style: "normal",
-          },
+          character,
           voice: {
             type: "text",
             input_text: scriptText,

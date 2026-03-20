@@ -69,6 +69,9 @@ export async function cloneAndDeployTemplate(
       typeof deployData === "object" && deployData?.url
         ? getCanonicalDemoUrl(leadId, deployData.url)
         : getCanonicalDemoUrl(leadId);
+    const finalUrl = (typeof deployData === "object" && deployData?.url)
+        ? `https://${deployData.url}/demo/${leadId}`
+        : `${fallbackUrl}/demo/${leadId}`;
 
     console.log(`[Vercel API] Deployment process initiated: ${finalUrl}`);
     return finalUrl;
