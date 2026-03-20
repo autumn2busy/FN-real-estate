@@ -23,10 +23,10 @@ export async function POST(req: Request) {
     // 1. Trigger Vercel Site Generation
     let demoSiteUrl = "";
     try {
-      demoSiteUrl = await cloneAndDeployTemplate(projectName, templateRepo);
+      demoSiteUrl = await cloneAndDeployTemplate(projectName, templateRepo, leadId);
     } catch (e: any) {
       console.error("[Builder Agent] Vercel integration error:", e.message);
-      demoSiteUrl = `https://${projectName}.vercel.app`; // Fallback layout
+      demoSiteUrl = `https://${projectName}.vercel.app/demo/${leadId}`; // Fallback layout
     }
 
     // 2. Trigger HeyGen Avatar Video

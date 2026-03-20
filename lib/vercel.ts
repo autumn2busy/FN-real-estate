@@ -1,4 +1,8 @@
-export async function cloneAndDeployTemplate(projectName: string, _templateRepo: string) {
+export async function cloneAndDeployTemplate(
+  projectName: string,
+  _templateRepo: string,
+  leadId: string
+) {
   const token = process.env.VERCEL_API_TOKEN;
   if (!token) throw new Error("Missing VERCEL_API_TOKEN");
 
@@ -15,7 +19,7 @@ export async function cloneAndDeployTemplate(projectName: string, _templateRepo:
       const hookRes = await fetch(deployHookUrl, { method: "POST" });
       if (hookRes.ok) {
         console.log("[Vercel API] Deployment hook accepted.");
-        return `${fallbackUrl}/demo/${projectName.split("-").pop()}`;
+        return `${fallbackUrl}/demo/${leadId}`;
       }
       const hookText = await hookRes.text();
       console.warn(`[Vercel API] Deployment hook failed (${hookRes.status}): ${hookText.slice(0, 200)}`);
@@ -54,7 +58,6 @@ export async function cloneAndDeployTemplate(projectName: string, _templateRepo:
       return fallbackUrl;
     }
 
-    const leadId = projectName.split("-").pop();
     const finalUrl = (typeof deployData === "object" && deployData?.url)
         ? `https://${deployData.url}/demo/${leadId}`
         : `${fallbackUrl}/demo/${leadId}`;
@@ -63,6 +66,6 @@ export async function cloneAndDeployTemplate(projectName: string, _templateRepo:
     return finalUrl;
   } catch (err) {
     console.warn("[Vercel API] Network error during deployment:", err);
-    return `${fallbackUrl}/demo/${projectName.split("-").pop()}`;
+    return `${fallbackUrl}/demo/${leadId}`;
   }
 }
