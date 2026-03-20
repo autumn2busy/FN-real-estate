@@ -1,0 +1,2 @@
+DEMO_SITE_URL: https://flynerd-demo-lead.vercel.app/demo/b3a590fe
+VIDEO_URL: https://share.heygen.com/fallback-video-1773967268878
