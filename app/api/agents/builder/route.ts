@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { cloneAndDeployTemplate } from "@/lib/vercel";
+import { cloneAndDeployTemplate, getCanonicalDemoUrl } from "@/lib/vercel";
 import { generateAvatarVideo } from "@/lib/heygen";
 
 // POST /api/agents/builder
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       demoSiteUrl = await cloneAndDeployTemplate(projectName, templateRepo, leadId);
     } catch (e: any) {
       console.error("[Builder Agent] Vercel integration error:", e.message);
-      demoSiteUrl = `https://${projectName}.vercel.app/demo/${leadId}`; // Fallback layout
+      demoSiteUrl = getCanonicalDemoUrl(leadId); // Shared fallback layout
     }
 
     // 2. Trigger HeyGen Avatar Video
