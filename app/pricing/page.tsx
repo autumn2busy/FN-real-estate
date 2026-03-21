@@ -4,110 +4,110 @@ import { ArrowUpRight, Check, HelpCircle } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Pricing",
-    description: "Transparent pricing for AI automation services. From $499 email campaigns to full-scale business transformation.",
+    description: "Productized pricing for a lean AI automation agency. Clear scopes, fixed outcomes, and scalable monthly support.",
 };
 
 const pricingTiers = [
     {
         name: "Starter",
-        subtitle: "Email Campaign Automation",
-        price: "$499",
-        period: "per campaign",
-        description: "Perfect for testing the waters. A complete done-for-you email campaign with strategy, copy, and automation.",
+        subtitle: "Automation Audit",
+        price: "$495",
+        period: "one-time",
+        description: "A focused systems audit and 30-day roadmap to identify your highest-impact automation opportunities.",
         features: [
-            "30-min strategy consultation",
-            "Audience segmentation setup",
-            "3-5 email sequence",
-            "AI-assisted copywriting",
-            "ActiveCampaign setup",
-            "A/B testing",
-            "30-day performance report",
+            "60-minute strategy call",
+            "Current stack and workflow audit",
+            "Bottleneck and ROI prioritization",
+            "Custom 30-day implementation roadmap",
+            "Tool recommendations (AI + automation)",
+            "Async follow-up Q&A for 7 days",
+            "Audit fee credited toward Build package",
         ],
-        cta: "Get Started",
+        cta: "Book Audit",
         href: "/contact?package=starter",
         popular: true,
     },
     {
         name: "Build",
-        subtitle: "Foundation Package",
-        price: "$2,500",
+        subtitle: "Quickstart Workflow Build",
+        price: "$1,250",
         period: "one-time",
-        description: "Get your systems in order. CRM cleanup, basic automations, and a solid foundation for growth.",
+        description: "One high-impact automation built end-to-end with documentation and team handoff.",
         features: [
-            "Everything in Starter",
-            "CRM data cleanup",
-            "3 custom automations",
-            "Lead scoring setup",
-            "Basic analytics dashboard",
-            "2 weeks of support",
-            "Team training session",
+            "Everything in Starter applied to implementation",
+            "1 production-ready workflow (fixed scope)",
+            "Core tool integrations (CRM, email, forms, sheets)",
+            "QA + launch checklist",
+            "Loom walkthrough + SOP documentation",
+            "14 days post-launch support",
+            "Option to upgrade into monthly optimization",
         ],
-        cta: "Get Started",
+        cta: "Start Build",
         href: "/contact?package=build",
     },
     {
         name: "Optimize",
-        subtitle: "Growth Retainer",
-        price: "$5,000",
+        subtitle: "Monthly Care Plan",
+        price: "$750",
         period: "/month",
-        description: "Ongoing optimization and expansion. We become an extension of your team.",
+        description: "Ongoing maintenance, monitoring, and iterative improvements to keep your systems performing.",
         features: [
-            "Everything in Build",
-            "Unlimited automations",
-            "AI agent development",
-            "Advanced attribution",
-            "Weekly strategy calls",
-            "Priority support",
-            "Content system setup",
+            "System monitoring and health checks",
+            "2 improvement tickets per month",
+            "Bug fixes and reliability tuning",
+            "Monthly performance summary",
+            "Priority async support",
+            "Quarterly roadmap refresh",
+            "Best for 1-3 core automations",
         ],
-        cta: "Get Started",
+        cta: "Choose Optimize",
         href: "/contact?package=optimize",
         featured: true,
     },
     {
         name: "Scale",
-        subtitle: "Full Transformation",
-        price: "$10,000",
+        subtitle: "Growth Partner Retainer",
+        price: "$1,800",
         period: "/month",
-        description: "Complete AI transformation. Full-stack implementation with dedicated resources.",
+        description: "For teams ready for multi-workflow execution, agent rollouts, and proactive growth operations.",
         features: [
             "Everything in Optimize",
-            "Dedicated project manager",
-            "Custom integrations",
-            "Enterprise AI solutions",
-            "Data warehouse setup",
-            "24/7 monitoring",
-            "Quarterly strategy reviews",
+            "Up to 6 active workflow initiatives",
+            "AI lead qualification or support agent rollout",
+            "Advanced CRM automation and lifecycle journeys",
+            "Biweekly strategy calls",
+            "Faster turnaround SLAs",
+            "Ideal for growing teams with active campaigns",
         ],
-        cta: "Contact Us",
+        cta: "Apply for Scale",
         href: "/contact?package=scale",
     },
 ];
 
 const faqs = [
     {
-        question: "What if I'm not sure which package I need?",
-        answer: "Book a free strategy call and we'll help you identify the right fit based on your goals, budget, and current setup.",
+        question: "Why is the Starter package paid?",
+        answer: "The audit includes strategy, technical diagnostics, and a tailored roadmap you can execute with or without us. It prevents guesswork and keeps implementation focused.",
     },
     {
-        question: "Can I upgrade my package later?",
-        answer: "Absolutely. Most clients start with Build or a Starter campaign, then move to monthly retainers as they see results.",
+        question: "Can the audit fee be applied to implementation?",
+        answer: "Yes. If you move forward within 30 days, your Starter fee is credited toward the Build package.",
     },
     {
-        question: "Do you offer custom packages?",
-        answer: "Yes. If none of these fit your needs exactly, we can create a custom scope based on your specific requirements.",
+        question: "Do you offer custom scopes?",
+        answer: "Yes, for clients with complex requirements. We still start with a paid audit so custom work is grounded in a clear implementation plan.",
     },
     {
-        question: "What's your refund policy?",
-        answer: "We stand behind our work. If you're not satisfied with deliverables, we'll make it right or refund unused work.",
+        question: "How fast can we launch?",
+        answer: "Most Build projects launch within 1-2 weeks after kickoff. Timeline depends on integrations, access readiness, and review speed.",
     },
     {
-        question: "How quickly can you start?",
-        answer: "Typically within 1-2 weeks of signing. Rush timelines may be available for an additional fee.",
+        question: "Who is this best for?",
+        answer: "Small and midsize teams that want meaningful automation outcomes without hiring a full in-house operations team.",
     },
     {
-        question: "Do you require long-term contracts?",
-        answer: "Monthly retainers are month-to-month with 30 days notice. Project work is milestone-based with agreed deliverables.",
+        question: "Do monthly plans require long-term contracts?",
+        answer: "No. Optimize and Scale are month-to-month with 30 days notice.",
     },
 ];
 
@@ -120,10 +120,10 @@ export default function PricingPage() {
                     <div className="max-w-3xl mx-auto text-center">
                         <span className="section-label">Pricing</span>
                         <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-semibold mt-4 mb-6">
-                            Transparent <span className="gradient-text">Pricing</span>
+                            Productized <span className="gradient-text">Pricing</span>
                         </h1>
                         <p className="text-xl text-[var(--text-secondary)] leading-relaxed">
-                            From single campaigns to full business transformation. Choose what fits your stage.
+                            Lean, clear packages designed for fast implementation and measurable outcomes.
                         </p>
                     </div>
                 </div>
@@ -216,10 +216,10 @@ export default function PricingPage() {
                             Still Have Questions?
                         </h2>
                         <p className="text-lg text-[var(--text-secondary)] mb-8">
-                            Book a free 30-minute strategy call. No pressure—just honest advice about what would work for your business.
+                            Start with a paid audit so we can map exactly what to automate first, why it matters, and how to implement it.
                         </p>
                         <Link href="/contact" className="btn btn-primary text-lg px-10 py-4">
-                            Book a Free Call
+                            Book the Starter Audit
                             <ArrowUpRight size={20} />
                         </Link>
                     </div>
