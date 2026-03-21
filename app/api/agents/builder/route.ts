@@ -53,8 +53,8 @@ export async function POST(req: Request) {
       videoUrl = `https://share.heygen.com/demo-${leadId.slice(0, 8)}`;
     }
 
-    // 3. Set expiry: 48 hours from now
-    const validUntil = new Date(Date.now() + 48 * 60 * 60 * 1000);
+    // 3. Set expiry: 7 days from now
+    const validUntil = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
     // 4. Update the Database
     const updatedLead = await prisma.agencyLead.update({

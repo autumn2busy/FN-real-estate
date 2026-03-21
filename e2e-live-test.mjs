@@ -3,7 +3,7 @@
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://127.0.0.1:3000";
 
 async function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -47,7 +47,14 @@ async function runLiveE2ETest() {
         businessName: lead.businessName,
       }),
     });
+    
+    if (!intelRes.ok) {
+        const errText = await intelRes.text();
+        throw new Error(`Intel Agent failed with status ${intelRes.status}: ${errText}`);
+    }
+    
     console.log("Result:", await intelRes.json());
+
     await delay(2000);
 
     // 3. The Builder Phase

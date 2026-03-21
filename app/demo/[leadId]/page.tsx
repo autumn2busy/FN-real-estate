@@ -48,7 +48,7 @@ export default async function LeadDemoPage({
             This Preview Has Expired
           </h1>
           <p className="text-neutral-400 text-lg leading-relaxed">
-            The exclusive 48-hour demo for{" "}
+            The exclusive 7-day demo for{" "}
             <span className="font-bold text-white">{businessName}</span> is no
             longer active. Request a fresh access link below.
           </p>
@@ -332,7 +332,7 @@ export default async function LeadDemoPage({
         <p className="text-xl text-neutral-400 leading-relaxed max-w-2xl mx-auto">
           This demo is live and ready to be customized with your actual brand
           colors, testimonials, and booking links. We can have the full version
-          launched in as little as 48 hours.
+          launched in as little as 7 days.
         </p>
         {/* Client island — handles the 15s delay + brand pulse */}
         <DelayedCTA
