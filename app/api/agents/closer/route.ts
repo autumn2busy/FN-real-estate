@@ -21,7 +21,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing email payload data" }, { status: 400 });
     }
 
-    const leadEmail = From.toLowerCase().trim();
+    let leadEmail = From.toLowerCase().trim();
+    // n8n often sends From as "Name <email@domain.com>" - extract just the email
+    const emailMatch = leadEmail.match(/<([^>]+)>/);
+    if (emailMatch) {
+        leadEmail = emailMatch[1];
+    }
     const lead = await prisma.agencyLead.findFirst({
       where: { contactEmail: leadEmail },
     });
@@ -50,6 +55,7 @@ export async function POST(req: Request) {
     
     if (contactId) {
       await addTagToContact(contactId, "AI_REPLY_READY");
+      await addTagToContact(contactId, "email replied");
 
       // Find the contact's open deal and move it to Negotiating
       const dealsRes = await getDealsByContact(contactId);
