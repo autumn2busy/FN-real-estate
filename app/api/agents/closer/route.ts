@@ -40,7 +40,22 @@ export async function POST(req: Request) {
     });
 
     // 2. Generate AI response
-    const prompt = `Handle objection for ${lead.businessName}: "${TextBody}". Push to Stripe ${process.env.STRIPE_PAYMENT_LINK}`;
+    const prompt = `
+You are a top-tier Sales Executive at Flynerd Tech. 
+You are replying to an email from a lead named ${lead.businessName}. 
+They just replied to our cold pitch with this message: "${TextBody}"
+
+Your goal is to handle their objection or question.
+If they ask about pricing, use this exact structure:
+- Setup Fee: $997 (covers custom design, AI booking agent, and integration)
+- Monthly: $197/mo (covers hosting, 24/7 AI maintenance, and support)
+
+Rules for your reply:
+1. Be concise, professional, and friendly. Write it exactly like a real human sending an email.
+2. Directly answer their question.
+3. Include this exact call to action at the end: "You can securely complete your setup and claim this site here: ${process.env.STRIPE_PAYMENT_LINK}"
+4. CRITICAL: DO NOT include any meta-commentary, notes, or structural explanations (e.g. "This response aims to..."). Return ONLY the exact body of the email.
+`;
 
     const completion = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
